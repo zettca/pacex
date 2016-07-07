@@ -17,12 +17,12 @@
 
 <main>
     <section>
-        <h1>Time</h1>
+        <h2>Time</h2>
         <input type="time" id="time" min="00:00:00" max="48:00:00" step="1" value="00:30:00">
         <label><input type="checkbox" checked name="fixed"> Fixed Time</label>
     </section>
     <section>
-        <h1><span>Distance</span> <span id="spanDist"></span></h1>
+        <h2><span>Distance</span> <span id="spanDist"></span></h2>
         <input type="range" id="dist" min="100" max="100000" step="100">
         <div>
             <button onclick="setDist(1000, true)">1K</button>
@@ -35,7 +35,7 @@
         </div>
     </section>
     <section>
-        <h1><span>Speed</span> <span id="spanSpeed"></span></h1>
+        <h2><span>Speed</span> <span id="spanSpeed"></span></h2>
         <input type="range" id="speed" min="100" max="60000" step="100">
         <div>
             <button onclick="setSpeed(5000, true)">Walk</button>

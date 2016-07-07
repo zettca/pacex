@@ -11,7 +11,7 @@ main{
     width: 90%;
     margin: 20px auto 0;
     border-radius: 8px;
-    background: #EEE;
+    background: rgba(244,255,244,0.96);
 }
 
 section{
@@ -21,8 +21,10 @@ section{
 
 label{
     font-size: 1.2em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
-h1{
+h2{
 	margin-bottom: 0.2em;
 }
