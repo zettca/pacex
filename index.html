@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Speed Chartulator</title>
+	<meta charset="UTF-8" content="text/html">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="DESCRIPTION GOES HERE">
+	<meta name="keywords" content="KEYWORD1 KEYWORD2 KEYWORD3 zettca">
+	<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<body>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="inputses.css">
+
+<main>
+    <section>
+        <h1>Time</h1>
+        <input type="time" id="time" min="00:00:00" max="48:00:00" step="1" value="00:30:00">
+        <label><input type="checkbox" checked name="fixed"> Fixed Time</label>
+    </section>
+    <section>
+        <h1><span>Distance</span> <span id="spanDist"></span></h1>
+        <input type="range" id="dist" min="100" max="100000" step="100">
+        <div>
+            <button onclick="setDist(1000, true)">1K</button>
+            <button onclick="setDist(1600, true)">Mile</button>
+            <button onclick="setDist(5000, true)">5K</button>
+            <button onclick="setDist(10000, true)">10K</button>
+            <button onclick="setDist(21100, true)">Half-Marathon</button>
+            <button onclick="setDist(42200, true)">Marathon</button>
+            <button onclick="setDist(50000, true)">50K</button>
+            <button onclick="setDist(100000, true)">100K</button>
+        </div>
+    </section>
+    <section>
+        <h1><span>Speed</span> <span id="spanSpeed"></span></h1>
+        <input type="range" id="speed" min="4000" max="50000" step="100">
+        <div>
+            <button onclick="setSpeed(5000, true)">Walk</button>
+            <button onclick="setSpeed(8000, true)">Fast Walk</button>
+            <button onclick="setSpeed(12000, true)">Run</button>
+            <button onclick="setSpeed(16000, true)">Fast Run</button>
+            <button onclick="setSpeed(30000, true)">Sprint</button>
+            <button onclick="setSpeed(44000, true)">Usain Bolt</button>
+        </div>
+    </section>
+</main>
+
+<footer></footer>
+<script src="scripts.js"></script>
