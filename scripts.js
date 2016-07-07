@@ -10,7 +10,9 @@ var elSpeed = document.getElementById("speed");
 
 elTime.oninput = onTime;
 elDist.oninput = onDist;
+elDist.addEventListener("wheel", scrollDist);
 elSpeed.oninput = onSpeed;
+elSpeed.addEventListener("wheel", scrollSpeed);
 
 function setDist(d, update){
     let spanDist = document.getElementById("spanDist");
@@ -43,6 +45,20 @@ function onDist(e){
 
 function onSpeed(e){
     console.log(e.target.value);
+    setSpeed(e.target.value, true);
+}
+
+function scrollDist(e){
+    console.log(e.target.value);
+    let scroll = parseInt(e.target.step, 10) * -Math.sign(e.deltaY);
+    e.target.value = parseInt(e.target.value, 10) + scroll;
+    setDist(e.target.value, true);
+}
+
+function scrollSpeed(e){
+    console.log(e.target.value);
+    let scroll = parseInt(e.target.step, 10) * -Math.sign(e.deltaY);
+    e.target.value = parseInt(e.target.value, 10) + scroll;
     setSpeed(e.target.value, true);
 }
 
