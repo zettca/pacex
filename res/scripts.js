@@ -4,78 +4,50 @@ const sec = 1;
 const min = 60*sec;
 const hour = 60*min;
 
-var elTime = document.getElementById("time");
-var elDist = document.getElementById("dist");
-var elSpeed = document.getElementById("speed");
+var f00 = (n) => (n<10) ? "0"+n : String(n);
+var calcTime = (dist, speed) => (dist / speed) * hour;  // seconds
+var calcDist = (time, speed) => speed * time / hour;    // meters
+var calcPace = (time, dist) => time / dist * 1000;      // seconds(/km)
+var calcSpeed = (time, dist) => dist * hour / time;     // meters(/hour)
 
-elTime.oninput = onTime;
-elDist.oninput = onDist;
-elDist.addEventListener("wheel", scrollDist);
-elSpeed.oninput = onSpeed;
-elSpeed.addEventListener("wheel", scrollSpeed);
+/* ============================== */
 
-function setDist(d, update){
+function setTime(time, changed){
+    let hms = [time/hour, Math.floor(time/min)%60, time%60].map(Math.floor);
+    elTime.value = hms.map(f00).join(":");
+}
+
+function setDist(dist, changed){
     let spanDist = document.getElementById("spanDist");
-    spanDist.innerHTML = (d/1000).toFixed(1) + "km";
-    elDist.value = d;
+    spanDist.innerHTML = (dist/1000).toFixed(1) + "km";
+    elDist.value = dist;
     
-    let speed = calcSpeed(parseTime(elTime.value), d);
-    if (update) setSpeed(speed, false);
-}
-
-function setSpeed(p, update){
-    let spanSpeed = document.getElementById("spanSpeed");
-    spanSpeed.innerHTML = (p/1000).toFixed(1) + "kph";
-    elSpeed.value = p;
-    
-    let dist = calcDist(parseTime(elTime.value), p);
-    if (update) setDist(dist, false);
-}
-
-function onTime(e){
-    console.log(e.target.value);
-    let speed = calcSpeed(parseTime(elTime.value), elDist.value);
-    setSpeed(speed, false);
-}
-
-function onDist(e){
-    console.log(e.target.value);
-    setDist(e.target.value, true);
-}
-
-function onSpeed(e){
-    console.log(e.target.value);
-    setSpeed(e.target.value, true);
-}
-
-function scrollDist(e){
-    console.log(e.target.value);
-    let scroll = parseInt(e.target.step, 10) * -Math.sign(e.deltaY);
-    e.target.value = parseInt(e.target.value, 10) + scroll;
-    setDist(e.target.value, true);
-}
-
-function scrollSpeed(e){
-    console.log(e.target.value);
-    let scroll = parseInt(e.target.step, 10) * -Math.sign(e.deltaY);
-    e.target.value = parseInt(e.target.value, 10) + scroll;
-    setSpeed(e.target.value, true);
-}
-
-function parseTime(time){
-    if (time.toString().indexOf(":") !== -1){
-        let splits = time.split(":");
-        time = (splits[0]*hour) + (splits[1]*min);
-        if (splits[2]) time +=  splits[2]*sec;
+    if (timeFix.checked){
+        let speed = calcSpeed(parseTime(elTime.value), dist);
+        if (changed) setSpeed(speed, false);
+    } else{
+        let time = calcTime(elDist.value, elSpeed.value);
+        setTime(time, false);
     }
-    console.log("TIME: " + time);
-    return parseInt(time, 10);
 }
 
-function calcSpeed(time, dist){
-    return (dist) / (time/hour);
-}
+function setSpeed(speed, changed){
+    let spanPace = document.getElementById("spanPace");
+    let spanSpeed = document.getElementById("spanSpeed");
 
-function calcDist(time, speed){
-    return speed * (time/hour);
+    let kph = (speed/1000);
+    let mpk = (60/kph);
+    let ms = [mpk, (mpk%1)*60].map(Math.floor).map(f00).join(":");
+
+    spanPace.innerHTML = ms + "/km";
+    spanSpeed.innerHTML = kph.toFixed(1) + "kph";
+    elSpeed.value = speed;
+
+    if (timeFix.checked){
+        let dist = calcDist(parseTime(elTime.value), speed);
+        if (changed) setDist(dist, false);
+    } else{
+        let time = calcTime(elDist.value, elSpeed.value);
+        setTime(time, true);
+    }
 }
