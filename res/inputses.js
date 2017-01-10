@@ -9,8 +9,8 @@ elTime.addEventListener("input", onChangedTime);
 elDist.addEventListener("input", onChangedDist);
 elSpeed.addEventListener("input", onChangedSpeed);
 
-elDist.addEventListener("wheel", scrollDist);
-elSpeed.addEventListener("wheel", scrollSpeed);
+elDist.addEventListener("wheel", onScrollDist);
+elSpeed.addEventListener("wheel", onScrollSpeed);
 
 function parseTime(time){
     let splits = time.split(":");
@@ -22,28 +22,25 @@ function parseTime(time){
 /* ============================== */
 
 function onChangedTime(e){
-    // console.log(e.target.value);
     let speed = calcSpeed(parseTime(elTime.value), elDist.value);
     setSpeed(speed, false);
 }
 
 function onChangedDist(e){
-    // console.log(e.target.value);
     setDist(e.target.value, true);
 }
 
 function onChangedSpeed(e){
-    // console.log(e.target.value);
     setSpeed(e.target.value, true);
 }
 
-function scrollDist(e){
+function onScrollDist(e){
     let scroll = parseInt(e.target.step, 10) * -Math.sign(e.deltaY);
     e.target.value = parseInt(e.target.value, 10) + scroll;
     setDist(e.target.value, true);
 }
 
-function scrollSpeed(e){
+function onScrollSpeed(e){
     let scroll = parseInt(e.target.step, 10) * -Math.sign(e.deltaY);
     e.target.value = parseInt(e.target.value, 10) + scroll;
     setSpeed(e.target.value, true);

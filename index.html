@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Speed Chartulator</title>
+	<title>PaceX Calculator</title>
 	<meta charset="UTF-8" content="text/html">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="A Javascript Pace/Speed calculator for runners">
-	<meta name="keywords" content="Calculator Speed Pace Time Chart Chartulator Running Run">
+	<meta name="description" content="PaceX: An easy to use Javascript Pace calculator for runners">
+	<meta name="keywords" content="PaceX Calculator Speed Pace Time Distance Chart Chartulator Running Run">
 </head>
 
 <body>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
 <link rel="stylesheet" href="res/styles.css">
 <link rel="stylesheet" href="res/inputses.css">
 
@@ -21,12 +21,10 @@
 		<label><input type="checkbox" id="fixed" checked name="fixed"> Lock Time</label>
 	</section>
 	<section>
-		<h2><span>Distance</span> <span id="spanDist"></span></h2>
-		<input type="range" id="dist" min="100" max="100000" step="100">
+		<h2><span id="spanDist">Distance</span></h2>
+		<input type="range" id="dist" min="100" max="50000" step="100">
 		<div>
-			<button onclick="setDist(1000, true)">1K</button>
 			<button onclick="setDist(1610, true)">Mile</button>
-			<button onclick="setDist(5000, true)">5K</button>
 			<button onclick="setDist(10000, true)">10K</button>
 			<button onclick="setDist(21100, true)">½ Marathon</button>
 			<button onclick="setDist(42200, true)">Marathon</button>
@@ -34,23 +32,17 @@
 		</div>
 	</section>
 	<section>
-		<h2>
-			<span>Pace</span> <span id="spanPace"></span>
-			<span>|</span>
-			<span>Speed</span> <span id="spanSpeed"></span>
-		</h2>
+		<h2><span id="spanPace">Pace</span></h2>
 		<input type="range" id="speed" min="100" max="60000" step="100">
 		<div>
-			<button onclick="setSpeed(4000, true)">Walk</button>
-			<button onclick="setSpeed(7000, true)">Fast Walk</button>
-			<button onclick="setSpeed(11000, true)">Run</button>
-			<button onclick="setSpeed(15000, true)">Fast Run</button>
+			<button onclick="setSpeed(5000, true)">Walk</button>
+			<button onclick="setSpeed(9000, true)">Jog</button>
+			<button onclick="setSpeed(12000, true)">Run</button>
+			<button onclick="setSpeed(16000, true)">Fast</button>
 			<button onclick="setSpeed(30000, true)">Sprint</button>
-			<button onclick="setSpeed(44000, true)">Bolt</button>
 		</div>
 	</section>
 </main>
 
-<footer></footer>
 <script src="res/scripts.js"></script>
 <script src="res/inputses.js"></script>
