@@ -24,22 +24,24 @@
 		<h2><span id="spanDist">Distance</span></h2>
 		<input type="range" id="dist" min="100" max="50000" step="100">
 		<div>
-			<button onclick="setDist(1610, true)">Mile</button>
-			<button onclick="setDist(10000, true)">10K</button>
-			<button onclick="setDist(21100, true)">½ Marathon</button>
-			<button onclick="setDist(42200, true)">Marathon</button>
-			<button onclick="setDist(50000, true)">50K</button>
+			<button onclick="setDist(1610)">Mile</button>
+			<button onclick="setDist(5000)">5K</button>
+			<button onclick="setDist(10000)">10K</button>
+			<button onclick="setDist(21100)">½ Marathon</button>
+			<button onclick="setDist(42200)">Marathon</button>
+			<button onclick="setDist(50000)">50K</button>
+			<button onclick="setDist(100000)">100K</button>
 		</div>
 	</section>
 	<section>
 		<h2><span id="spanPace">Pace</span></h2>
-		<input type="range" id="speed" min="100" max="60000" step="100">
+		<input type="range" id="speed" min="2000" max="30000" step="100">
 		<div>
-			<button onclick="setSpeed(5000, true)">Walk</button>
-			<button onclick="setSpeed(9000, true)">Jog</button>
-			<button onclick="setSpeed(12000, true)">Run</button>
-			<button onclick="setSpeed(16000, true)">Fast</button>
-			<button onclick="setSpeed(30000, true)">Sprint</button>
+			<button onclick="setSpeed(5000)">Walk</button>
+			<button onclick="setSpeed(9000)">Jog</button>
+			<button onclick="setSpeed(12000)">Run</button>
+			<button onclick="setSpeed(16000)">Fast</button>
+			<button onclick="setSpeed(30000)">Sprint</button>
 		</div>
 	</section>
 </main>

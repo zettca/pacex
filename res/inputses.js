@@ -23,25 +23,25 @@ function parseTime(time){
 
 function onChangedTime(e){
     let speed = calcSpeed(parseTime(elTime.value), elDist.value);
-    setSpeed(speed, false);
+    setSpeed(speed);
 }
 
 function onChangedDist(e){
-    setDist(e.target.value, true);
+    setDist(e.target.value);
 }
 
 function onChangedSpeed(e){
-    setSpeed(e.target.value, true);
+    setSpeed(e.target.value);
 }
 
 function onScrollDist(e){
     let scroll = parseInt(e.target.step, 10) * -Math.sign(e.deltaY);
     e.target.value = parseInt(e.target.value, 10) + scroll;
-    setDist(e.target.value, true);
+    setDist(e.target.value);
 }
 
 function onScrollSpeed(e){
     let scroll = parseInt(e.target.step, 10) * -Math.sign(e.deltaY);
     e.target.value = parseInt(e.target.value, 10) + scroll;
-    setSpeed(e.target.value, true);
+    setSpeed(e.target.value);
 }
