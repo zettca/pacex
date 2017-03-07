@@ -2,14 +2,6 @@ input{ background-color: transparent; }
 
 input:focus{ outline: none; }
 
-button{
-  border: 1px solid #363;
-  padding: 4px 10px;
-  margin-bottom: 8px;
-  background: #696;
-  border-radius: 2px;
-}
-
 input[type=time]{
   width: 6em;
   border: none;
