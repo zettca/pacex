@@ -10,7 +10,21 @@ const calcDist = (time, speed) => speed * time / hour;    // meters
 const calcPace = (time, dist) => time / dist * 1000;      // seconds(/km)
 const calcSpeed = (time, dist) => dist * hour / time;     // meters(/hour)
 
+var timeLocked = true;
+
 /* ============================== */
+
+function toggleTimeLock(el){
+    if (timeLocked){
+        timeLocked = false;
+        el.innerHTML = "Time Unlocked"
+        el.style = ""
+    } else{
+        timeLocked = true;
+        el.innerHTML = "Time Locked"
+        el.style = "background:#AAA;"
+    }
+}
 
 function setTime(time){
     let hms = [time/hour, Math.floor(time/min)%60, time%60].map(Math.floor);
@@ -23,7 +37,7 @@ function setDist(dist, keep){
     spanDist.innerHTML = "Distance " + (dist/1000).toFixed(1) + "km";
     elDist.value = dist;
     
-    if (timeFix.checked){
+    if (timeLocked){
         let speed = calcSpeed(parseTime(elTime.value), dist);
         if (keep === undefined) setSpeed(speed, true);
     } else{
@@ -43,7 +57,7 @@ function setSpeed(speed, keep){
     spanPace.innerHTML = "Pace " + ms + "/km (" + kph.toFixed(1) + "kph)";
     elSpeed.value = speed;
 
-    if (timeFix.checked){
+    if (timeLocked){
         let dist = calcDist(parseTime(elTime.value), speed);
         if (keep === undefined) setDist(dist, true);
     } else{

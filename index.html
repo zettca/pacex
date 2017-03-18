@@ -18,7 +18,7 @@
 	<section>
 		<h2>Time</h2>
 		<input type="time" id="time" step="1" value="01:30:00">
-		<label><input type="checkbox" id="fixed" checked name="fixed"> Lock Time</label>
+		<button onclick="toggleTimeLock(this)" style="background:#AAA;">Time Locked</button>
 	</section>
 	<section>
 		<h2><span id="spanDist">Distance</span></h2>
@@ -35,13 +35,13 @@
 	</section>
 	<section>
 		<h2><span id="spanPace">Pace</span></h2>
-		<input type="range" id="speed" min="2000" max="30000" step="100">
+		<input type="range" id="speed" min="6000" max="24000" step="100">
 		<div>
-			<button onclick="setSpeed(5000)">Walk</button>
-			<button onclick="setSpeed(9000)">Jog</button>
+			<button onclick="setSpeed(6000)">Walk</button>
+			<button onclick="setSpeed(8000)">Jog</button>
 			<button onclick="setSpeed(12000)">Run</button>
-			<button onclick="setSpeed(16000)">Fast</button>
-			<button onclick="setSpeed(30000)">Sprint</button>
+			<button onclick="setSpeed(15000)">Fast</button>
+			<button onclick="setSpeed(24000)">Bekele</button>
 		</div>
 	</section>
 </main>

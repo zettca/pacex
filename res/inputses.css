@@ -52,3 +52,14 @@ input[type=range]::-moz-range-thumb{
   background: #EFE;
   cursor: pointer;
 }
+
+button{
+  cursor: pointer;
+  border: 1px solid #363;
+  padding: 4px 10px;
+  margin-bottom: 8px;
+  background: #696;
+  border-radius: 2px;
+}
+
+#time{ margin-right: 1em; }
