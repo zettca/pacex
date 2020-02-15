@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Button, IconButton, InputBase, Slider, Typography } from "@material-ui/core";
+import { Button, IconButton, Slider, Typography } from "@material-ui/core";
 import LockIconOutlined from "@material-ui/icons/Lock";
 import LockOpenIconOutlined from "@material-ui/icons/LockOpen";
-import { f00 } from "./utils";
+import { ff00, parseTime, calcSpeed, calcTime, calcDist } from "./utils";
 
 const distances = [
   { label: "Mile", value: 1610 },
@@ -23,22 +23,35 @@ const speeds = [
 ];
 
 const Main = () => {
-  const [time, setTime] = useState("01:20:30");
+  const [time, setTime] = useState(90 * 60 + 20);
   const [dist, setDist] = useState(10000);
   const [speed, setSpeed] = useState(10000);
   const [timeLocked, setTimeLocked] = useState(true);
 
-  const handleTime = evt => setTime(evt.target.value);
-  const handleDist = (evt, value) => setDist(value);
-  const handleSpeed = (evt, value) => setSpeed(value);
+  const stepDist = 100;
+  const stepSpeed = 100;
+
+  const handleTime = (evt, value) => {
+    setTime(value || parseTime(evt.target.value));
+    setSpeed(calcSpeed(time, dist));
+  };
+
+  const handleDist = (evt, value) => {
+    setDist(value || dist + stepDist * -Math.sign(evt.deltaY));
+    timeLocked ? setSpeed(calcSpeed(time, dist)) : setTime(calcTime(dist, speed));
+  };
+
+  const handleSpeed = (evt, value) => {
+    setSpeed(value || speed + stepSpeed * -Math.sign(evt.deltaY));
+    timeLocked ? setDist(calcDist(time, speed)) : setTime(calcTime(dist, speed));
+  };
+
   const toggleTimeLock = () => setTimeLocked(!timeLocked);
 
   const kph = speed / 1000;
   const mpk = 60 / kph;
-  const ms = [mpk, (mpk % 1) * 60]
-    .map(Math.floor)
-    .map(f00)
-    .join(":");
+  const ms = [mpk, (mpk % 1) * 60].map(ff00).join(":");
+  const parsedTime = [time / 3600, Math.floor(time / 60) % 60, time % 60].map(ff00).join(":");
 
   return (
     <>
@@ -46,7 +59,7 @@ const Main = () => {
         <Typography component="h1" variant="h6">
           Time
         </Typography>
-        <InputBase value={time} onChange={handleTime} type="time" step={1} />
+        <input type="time" value={parsedTime} onChange={handleTime} step={1} />
         <IconButton onClick={toggleTimeLock}>
           {timeLocked ? <LockIconOutlined /> : <LockOpenIconOutlined />}
         </IconButton>
@@ -55,10 +68,17 @@ const Main = () => {
         <Typography component="h1" variant="h6">
           {`Distance ${(dist / 1000).toFixed(1)}km`}
         </Typography>
-        <Slider value={dist} onChange={handleDist} min={100} max={50000} step={100} />
+        <Slider
+          value={dist}
+          onChange={handleDist}
+          onWheel={handleDist}
+          min={100}
+          max={50000}
+          step={stepDist}
+        />
         <div>
           {distances.map((d, i) => (
-            <Button key={`dist${d.value}`} onClick={() => setDist(d.value)}>
+            <Button color="primary" key={`d${d.value}`} onClick={() => handleDist("", d.value)}>
               {d.label}
             </Button>
           ))}
@@ -68,10 +88,18 @@ const Main = () => {
         <Typography component="h1" variant="h6">
           {`Pace ${ms}/km (${kph.toFixed(1)}kph)`}
         </Typography>
-        <Slider value={speed} onChange={handleSpeed} min={6000} max={24000} step={100} />
+        <Slider
+          color="secondary"
+          value={speed}
+          onChange={handleSpeed}
+          onWheel={handleSpeed}
+          min={6000}
+          max={24000}
+          step={stepSpeed}
+        />
         <div>
           {speeds.map((d, i) => (
-            <Button key={`speed${d.value}`} onClick={() => setSpeed(d.value)}>
+            <Button color="secondary" key={`s${d.value}`} onClick={() => handleSpeed("", d.value)}>
               {d.label}
             </Button>
           ))}

@@ -1,12 +1,16 @@
 import React from "react";
-import { Container, Paper } from "@material-ui/core";
+import { Card, CardContent, Container } from "@material-ui/core";
 
 const withLayout = Component => (
-  <Container component="main">
-    <Paper elevation={3}>
-      <Component />
-    </Paper>
-  </Container>
+  <main style={{ minHeight: "100vh", display: "flex", alignItems: "center" }}>
+    <Container>
+      <Card>
+        <CardContent>
+          <Component />
+        </CardContent>
+      </Card>
+    </Container>
+  </main>
 );
 
 export default withLayout;
