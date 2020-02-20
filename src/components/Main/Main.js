@@ -32,18 +32,21 @@ const Main = () => {
   const stepSpeed = 100;
 
   const handleTime = (evt, value) => {
-    setTime(value || parseTime(evt.target.value));
-    setSpeed(calcSpeed(time, dist));
+    const newTime = value || parseTime(evt.target.value);
+    setTime(newTime);
+    setSpeed(calcSpeed(newTime, dist));
   };
 
   const handleDist = (evt, value) => {
-    setDist(value || dist + stepDist * -Math.sign(evt.deltaY));
-    timeLocked ? setSpeed(calcSpeed(time, dist)) : setTime(calcTime(dist, speed));
+    const newDist = value || dist + stepDist * -Math.sign(evt.deltaY);
+    setDist(newDist);
+    timeLocked ? setSpeed(calcSpeed(time, newDist)) : setTime(calcTime(newDist, speed));
   };
 
   const handleSpeed = (evt, value) => {
-    setSpeed(value || speed + stepSpeed * -Math.sign(evt.deltaY));
-    timeLocked ? setDist(calcDist(time, speed)) : setTime(calcTime(dist, speed));
+    const newSpeed = value || speed + stepSpeed * -Math.sign(evt.deltaY);
+    setSpeed(newSpeed);
+    timeLocked ? setDist(calcDist(time, newSpeed)) : setTime(calcTime(dist, newSpeed));
   };
 
   const toggleTimeLock = () => setTimeLocked(!timeLocked);
