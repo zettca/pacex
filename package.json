@@ -8,11 +8,12 @@
   },
   "homepage": ".",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "lint": "npx eslint . --cache --ignore-pattern .gitignore",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -26,6 +27,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "dependencies": {
     "@material-ui/core": "^4.9.2",
@@ -46,6 +52,7 @@
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^2.3.0",
     "gh-pages": "^2.2.0",
+    "husky": "^4.2.3",
     "prettier": "^1.19.1"
   }
 }

@@ -26,13 +26,15 @@ const Main = () => {
   const handleDist = (evt, value) => {
     const newDist = value || dist + stepDist * -Math.sign(evt.deltaY);
     setDist(newDist);
-    timeLocked ? setSpeed(calcSpeed(time, newDist)) : setTime(calcTime(newDist, speed));
+    if (timeLocked) setSpeed(calcSpeed(time, newDist));
+    else setTime(calcTime(newDist, speed));
   };
 
   const handleSpeed = (evt, value) => {
     const newSpeed = value || speed + stepSpeed * -Math.sign(evt.deltaY);
     setSpeed(newSpeed);
-    timeLocked ? setDist(calcDist(time, newSpeed)) : setTime(calcTime(dist, newSpeed));
+    if (timeLocked) setDist(calcDist(time, newSpeed));
+    else setTime(calcTime(dist, newSpeed));
   };
 
   const toggleTimeLock = () => setTimeLocked(!timeLocked);

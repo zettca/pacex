@@ -12,7 +12,7 @@ const distances = [
 ];
 
 // eslint-disable-next-line react/prop-types
-const TimePicker = ({ value, color, onChange, onButtonClick }) => (
+const TimePicker = ({ value, color, onChange }) => (
   <>
     <Slider
       min={100}

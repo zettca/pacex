@@ -10,7 +10,7 @@ const speeds = [
 ];
 
 // eslint-disable-next-line react/prop-types
-const SpeedPicker = ({ value, color, onChange, onButtonClick }) => (
+const SpeedPicker = ({ value, color, onChange }) => (
   <>
     <Slider
       min={6000}
