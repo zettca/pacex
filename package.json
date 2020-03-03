@@ -11,7 +11,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "lint": "npx eslint . --cache --ignore-pattern .gitignore",
+    "lint": "npm-run-all lint:*",
+    "lint:eslint": "npx eslint src --cache",
+    "lint:prettier": "npx prettier --check src/**/*.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
@@ -53,6 +55,7 @@
     "eslint-plugin-react-hooks": "^2.3.0",
     "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1"
   }
 }
