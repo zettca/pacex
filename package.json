@@ -10,17 +10,20 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "lint": "npm-run-all lint:*",
+    "test": "npm run test:cypress",
+    "test:react": "react-scripts test",
+    "test:cypress": "npx cypress run",
+    "lint": "npx run-p lint:*",
     "lint:eslint": "npx eslint src --cache",
     "lint:prettier": "npx prettier --check src/**/*.js",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build && npm run test",
     "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">0.6%",
+      "not ie 11",
       "not dead",
       "not op_mini all"
     ],
@@ -46,6 +49,7 @@
     "store": "^2.0.12"
   },
   "devDependencies": {
+    "cypress": "^4.1.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
@@ -56,6 +60,7 @@
     "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
   }
 }
