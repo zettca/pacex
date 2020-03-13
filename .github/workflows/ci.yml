@@ -11,12 +11,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+
       - run: npm install
+
       - run: npm run lint
+
+      - uses: cypress-io/github-action@v1
+        with:
+          start: npm start
+          build: npx cypress info
+
       - run: npm run build
+
       - uses: peaceiris/actions-gh-pages@v3
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
