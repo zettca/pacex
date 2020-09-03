@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { IconButton } from "@material-ui/core";
+import { Typography, IconButton } from "@material-ui/core";
 import LockIconOutlined from "@material-ui/icons/Lock";
 import LockOpenIconOutlined from "@material-ui/icons/LockOpen";
 import TimePicker from "./TimePicker";
 import SpeedPicker from "./SpeedPicker";
 import DistancePicker from "./DistancePicker";
-import withSection from "../layout/renderSection";
 import { ff00, parseTime, calcSpeed, calcTime, calcDist } from "../utils";
 
 const Main = () => {
@@ -43,25 +42,29 @@ const Main = () => {
   const mpk = 60 / kph;
   const ms = [mpk, (mpk % 1) * 60].map(ff00).join(":");
 
-  const icon = timeLocked ? <LockIconOutlined /> : <LockOpenIconOutlined />;
-
   return (
     <>
-      {withSection(
-        "Time",
-        <>
-          <TimePicker time={time} onChange={handleTime} step={1} />
-          <IconButton onClick={toggleTimeLock}>{icon}</IconButton>
-        </>,
-      )}
-      {withSection(
-        `Distance ${(dist / 1000).toFixed(1)}km`,
-        <DistancePicker color="primary" value={dist} onChange={handleDist} step={stepDist} />,
-      )}
-      {withSection(
-        `Pace ${ms}/km (${kph.toFixed(1)}kph)`,
-        <SpeedPicker color="secondary" value={speed} onChange={handleSpeed} step={stepSpeed} />,
-      )}
+      <section>
+        <Typography component="h1" variant="h6">
+          Time
+        </Typography>
+        <TimePicker time={time} onChange={handleTime} step={1} />
+        <IconButton onClick={toggleTimeLock}>
+          {timeLocked ? <LockIconOutlined /> : <LockOpenIconOutlined />}
+        </IconButton>
+      </section>
+      <section>
+        <Typography component="h1" variant="h6">
+          {`Distance ${(dist / 1000).toFixed(1)}km`}
+        </Typography>
+      </section>
+      <section>
+        <DistancePicker color="primary" value={dist} onChange={handleDist} step={stepDist} />
+        <Typography component="h1" variant="h6">
+          {`Pace ${ms}/km (${kph.toFixed(1)}kph)`}
+        </Typography>
+        <SpeedPicker color="secondary" value={speed} onChange={handleSpeed} step={stepSpeed} />
+      </section>
     </>
   );
 };
