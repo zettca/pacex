@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, CardContent, Container } from "@material-ui/core";
+import { Card, CardContent, Container } from "@material-ui/core";
 
 const withLayout = element => {
   const num = Math.floor(Math.random() * 7);
@@ -7,17 +7,16 @@ const withLayout = element => {
     background: `url(img/bg${num}.jpg) no-repeat center center fixed`,
     backgroundSize: "cover",
     minHeight: "100vh",
+    display: "flex",
   };
 
   return (
     <main style={bgStyles}>
-      <Box pt={4}>
-        <Container>
-          <Card>
-            <CardContent>{element}</CardContent>
-          </Card>
-        </Container>
-      </Box>
+      <Container style={{ margin: "auto", width: "100vw" }}>
+        <Card>
+          <CardContent>{element}</CardContent>
+        </Card>
+      </Container>
     </main>
   );
 };
