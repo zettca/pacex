@@ -5,6 +5,7 @@ import LockOpenIconOutlined from "@material-ui/icons/LockOpen";
 import TimePicker from "./TimePicker";
 import SpeedPicker from "./SpeedPicker";
 import DistancePicker from "./DistancePicker";
+import Settings from "./Settings";
 import { ff00, parseTime } from "../utils";
 import useCalc from "../utils/useCalc";
 
@@ -43,6 +44,9 @@ const Main = () => {
   return (
     <>
       <section>
+        <Settings />
+      </section>
+      <section>
         <Typography component="h1" variant="h6">
           Time
         </Typography>
@@ -57,11 +61,11 @@ const Main = () => {
         </Typography>
       </section>
       <section>
-        <DistancePicker color="primary" value={dist} onChange={handleDist} step={stepDist} />
+        <DistancePicker value={dist} onChange={handleDist} step={stepDist} />
         <Typography component="h1" variant="h6">
           {`Pace ${ms}/km (${kph.toFixed(1)}kph)`}
         </Typography>
-        <SpeedPicker color="secondary" value={speed} onChange={handleSpeed} step={stepSpeed} />
+        <SpeedPicker value={speed} onChange={handleSpeed} step={stepSpeed} />
       </section>
     </>
   );

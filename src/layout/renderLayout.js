@@ -4,7 +4,10 @@ import { Card, CardContent, Container } from "@material-ui/core";
 const withLayout = (element) => {
   const num = Math.floor(Math.random() * 7);
   const bgStyles = {
-    background: `url(img/bg${num}.jpg) no-repeat center center fixed`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundAttachment: "fixed",
+    backgroundImage: `url(img/bg${num}.jpg)`,
     backgroundSize: "cover",
     minHeight: "100vh",
     display: "flex",
