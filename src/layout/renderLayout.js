@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent, Container } from "@material-ui/core";
 
-const withLayout = element => {
+const withLayout = (element) => {
   const num = Math.floor(Math.random() * 7);
   const bgStyles = {
     background: `url(img/bg${num}.jpg) no-repeat center center fixed`,

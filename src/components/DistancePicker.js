@@ -23,8 +23,8 @@ const TimePicker = ({ value, color, onChange }) => (
       onWheel={onChange}
     />
     <div>
-      {distances.map(d => (
-        <Button color={color} key={`d${d.value}`} onClick={e => onChange(e, d.value)}>
+      {distances.map((d) => (
+        <Button color={color} key={`d${d.value}`} onClick={(e) => onChange(e, d.value)}>
           {d.label}
         </Button>
       ))}

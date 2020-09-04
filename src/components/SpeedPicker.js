@@ -21,8 +21,8 @@ const SpeedPicker = ({ value, color, onChange }) => (
       onWheel={onChange}
     />
     <div>
-      {speeds.map(d => (
-        <Button color={color} key={`s${d.value}`} onClick={e => onChange(e, d.value)}>
+      {speeds.map((d) => (
+        <Button color={color} key={`s${d.value}`} onClick={(e) => onChange(e, d.value)}>
           {d.label}
         </Button>
       ))}

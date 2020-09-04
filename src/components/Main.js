@@ -5,35 +5,33 @@ import LockOpenIconOutlined from "@material-ui/icons/LockOpen";
 import TimePicker from "./TimePicker";
 import SpeedPicker from "./SpeedPicker";
 import DistancePicker from "./DistancePicker";
-import { ff00, parseTime, calcSpeed, calcTime, calcDist } from "../utils";
+import { ff00, parseTime } from "../utils";
+import useCalc from "../utils/useCalc";
 
 const Main = () => {
-  const [time, setTime] = useState(90 * 60 + 20);
-  const [dist, setDist] = useState(10000);
-  const [speed, setSpeed] = useState(10000);
   const [timeLocked, setTimeLocked] = useState(true);
+  const [time, dist, speed, update] = useCalc({
+    time: 90 * 60 + 20,
+    dist: 10000,
+    speed: 10000,
+  });
 
   const stepDist = 100;
   const stepSpeed = 100;
 
   const handleTime = (evt, value) => {
-    const newTime = value || parseTime(evt.target.value);
-    setTime(newTime);
-    setSpeed(calcSpeed(newTime, dist));
+    const newTime = value || parseTime(evt.target.value); // TODO: ??
+    update("time", newTime);
   };
 
   const handleDist = (evt, value) => {
-    const newDist = value || dist + stepDist * -Math.sign(evt.deltaY);
-    setDist(newDist);
-    if (timeLocked) setSpeed(calcSpeed(time, newDist));
-    else setTime(calcTime(newDist, speed));
+    const newDist = value || dist + stepDist * -Math.sign(evt.deltaY); // TODO: ??
+    update("dist", newDist);
   };
 
   const handleSpeed = (evt, value) => {
-    const newSpeed = value || speed + stepSpeed * -Math.sign(evt.deltaY);
-    setSpeed(newSpeed);
-    if (timeLocked) setDist(calcDist(time, newSpeed));
-    else setTime(calcTime(dist, newSpeed));
+    const newSpeed = value || speed + stepSpeed * -Math.sign(evt.deltaY); // TODO: ??
+    update("speed", newSpeed);
   };
 
   const toggleTimeLock = () => setTimeLocked(!timeLocked);
