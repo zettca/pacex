@@ -21,17 +21,17 @@ const Main = () => {
   const stepSpeed = 100;
 
   const handleTime = (evt, value) => {
-    const newTime = value || parseTime(evt.target.value); // TODO: ??
+    const newTime = value ?? parseTime(evt.target.value);
     update("time", newTime);
   };
 
   const handleDist = (evt, value) => {
-    const newDist = value || dist + stepDist * -Math.sign(evt.deltaY); // TODO: ??
+    const newDist = value ?? dist + stepDist * -Math.sign(evt.deltaY);
     update("dist", newDist);
   };
 
   const handleSpeed = (evt, value) => {
-    const newSpeed = value || speed + stepSpeed * -Math.sign(evt.deltaY); // TODO: ??
+    const newSpeed = value ?? speed + stepSpeed * -Math.sign(evt.deltaY);
     update("speed", newSpeed);
   };
 

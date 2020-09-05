@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { calcSpeed, calcTime, calcDist } from "./index";
+import { calcSpeed, calcTime, calcDist } from ".";
 
 export default function useCalc(initialState) {
   const { time: initialTime, dist: initialDist, speed: initialSpeed } = initialState;
@@ -29,13 +29,13 @@ export default function useCalc(initialState) {
   const update = (key, newValue) => {
     switch (key) {
       case "time":
-        return updateTime(newValue || time); // TODO: ??
+        return updateTime(newValue ?? time);
       case "dist":
-        return updateDist(newValue || dist); // TODO: ??
+        return updateDist(newValue ?? dist);
       case "speed":
-        return updateSpeed(newValue || speed); // TODO: ??
+        return updateSpeed(newValue ?? speed);
       case "timeLocked":
-        return setTimeLocked(newValue || !timeLocked); // TODO: ??
+        return setTimeLocked(newValue ?? !timeLocked);
       default:
         return null;
     }

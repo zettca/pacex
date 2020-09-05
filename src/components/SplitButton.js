@@ -11,7 +11,7 @@ const SplitButton = ({ options, onChange }) => {
   const handleOptionClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
-    if (onChange) onChange(options[index]); // TODO: ?.
+    onChange?.(options[index]);
   };
 
   const handleToggle = () => {
