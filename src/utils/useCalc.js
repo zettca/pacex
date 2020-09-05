@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { calcSpeed, calcTime, calcDist } from ".";
+import { calcSpeed, calcTime, calcDist } from "./calc";
 
 export default function useCalc(initialState) {
   const { time: initialTime, dist: initialDist, speed: initialSpeed } = initialState;

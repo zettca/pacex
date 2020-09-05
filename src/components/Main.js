@@ -1,41 +1,32 @@
-import React, { useState } from "react";
-import { Typography, IconButton } from "@material-ui/core";
-import LockIconOutlined from "@material-ui/icons/Lock";
-import LockOpenIconOutlined from "@material-ui/icons/LockOpen";
-import TimePicker from "./TimePicker";
-import SpeedPicker from "./SpeedPicker";
-import DistancePicker from "./DistancePicker";
-import Settings from "./Settings";
-import { ff00, parseTime } from "../utils";
-import useCalc from "../utils/useCalc";
+import React, { useEffect } from "react";
+import { withStyles } from "@material-ui/core";
+import SplitButton from "./SplitButton";
+import SliderPicker from "./SliderPicker";
+import { ff00, secsToHms, useCalc, useSettings } from "../utils";
+import { DISTANCES } from "../utils/useSettings";
+import styles from "./styles";
 
-const Main = () => {
-  const [timeLocked, setTimeLocked] = useState(true);
+// const calcOptions = ["Time", "Distance", "Pace"];
+
+const Main = ({ classes }) => {
+  const [distSettings, setDistSetting] = useSettings();
+  // const [calcSetting, setCalcSetting] = useState(calcOptions);
   const [time, dist, speed, update] = useCalc({
     time: 90 * 60 + 20,
     dist: 10000,
     speed: 10000,
   });
 
-  const stepDist = 100;
-  const stepSpeed = 100;
+  useEffect(() => {
+    update("time", distSettings.time.value);
+    update("dist", distSettings.dist.value);
+    // update("speed", distSettings.speed.value);
+  }, [distSettings, update]);
 
-  const handleTime = (evt, value) => {
-    const newTime = value ?? parseTime(evt.target.value);
-    update("time", newTime);
-  };
-
-  const handleDist = (evt, value) => {
-    const newDist = value ?? dist + stepDist * -Math.sign(evt.deltaY);
-    update("dist", newDist);
-  };
-
-  const handleSpeed = (evt, value) => {
-    const newSpeed = value ?? speed + stepSpeed * -Math.sign(evt.deltaY);
-    update("speed", newSpeed);
-  };
-
-  const toggleTimeLock = () => setTimeLocked(!timeLocked);
+  const handleTime = (evt, value) => update("time", value);
+  const handleDist = (evt, value) => update("dist", value);
+  const handleSpeed = (evt, value) => update("speed", value);
+  const handleDistSetting = (evt, value) => setDistSetting(value);
 
   const kph = speed / 1000;
   const mpk = 60 / kph;
@@ -44,31 +35,31 @@ const Main = () => {
   return (
     <>
       <section>
-        <Settings />
+        <div className={classes.settings}>
+          <SplitButton onChange={handleDistSetting} options={Object.keys(DISTANCES)} />
+          {/* <SplitButton onChange={(s) => setCalcSetting(s)} options={calcOptions} /> */}
+        </div>
       </section>
-      <section>
-        <Typography component="h1" variant="h6">
-          Time
-        </Typography>
-        <TimePicker time={time} onChange={handleTime} step={1} />
-        <IconButton onClick={toggleTimeLock}>
-          {timeLocked ? <LockIconOutlined /> : <LockOpenIconOutlined />}
-        </IconButton>
-      </section>
-      <section>
-        <Typography component="h1" variant="h6">
-          {`Distance ${(dist / 1000).toFixed(1)}km`}
-        </Typography>
-      </section>
-      <section>
-        <DistancePicker value={dist} onChange={handleDist} step={stepDist} />
-        <Typography component="h1" variant="h6">
-          {`Pace ${ms}/km (${kph.toFixed(1)}kph)`}
-        </Typography>
-        <SpeedPicker value={speed} onChange={handleSpeed} step={stepSpeed} />
-      </section>
+      <SliderPicker
+        title={`Time ${secsToHms(time)}`}
+        onChange={handleTime}
+        {...distSettings.time}
+        value={time}
+      />
+      <SliderPicker
+        title={`Distance ${(dist / 1000).toFixed(1)}km`}
+        onChange={handleDist}
+        {...distSettings.dist}
+        value={dist}
+      />
+      <SliderPicker
+        title={`Pace ${ms}/km (${kph.toFixed(1)}kph)`}
+        onChange={handleSpeed}
+        {...distSettings.speed}
+        value={speed}
+      />
     </>
   );
 };
 
-export default Main;
+export default withStyles(styles)(Main);

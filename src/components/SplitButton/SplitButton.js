@@ -1,17 +1,23 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { ArrowDropDown } from "@material-ui/icons";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 
-/* eslint-disable react/prop-types */
-const SplitButton = ({ options, onChange }) => {
+const SplitButton = ({ index = 0, options = [], onChange }) => {
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(index);
   const ref = useRef(null);
 
-  const handleOptionClick = (event, index) => {
+  useEffect(() => {
     setSelectedIndex(index);
+  }, [index]);
+
+  useEffect(() => {
     setOpen(false);
-    onChange?.(options[index]);
+    onChange?.(null, options[selectedIndex]);
+  }, [selectedIndex, options, onChange]);
+
+  const handleOptionClick = (event, idx) => {
+    setSelectedIndex(idx);
   };
 
   const handleToggle = () => {
@@ -28,11 +34,11 @@ const SplitButton = ({ options, onChange }) => {
         {options[selectedIndex]}
       </Button>
       <Menu anchorEl={ref.current} open={open} onClose={handleClose}>
-        {options.map((option, index) => (
+        {options.map((option, idx) => (
           <MenuItem
             key={option}
-            selected={index === selectedIndex}
-            onClick={(event) => handleOptionClick(event, index)}
+            selected={idx === selectedIndex}
+            onClick={(event) => handleOptionClick(event, idx)}
           >
             {option}
           </MenuItem>
