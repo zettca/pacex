@@ -1,12 +1,24 @@
 import { useState } from "react";
 
 export const DISTANCES = {
+  DEFAULT: "DEFAULT",
   ALL: "ALL",
   SHORT: "SHORT",
   MEDIUM: "MEDIUM",
   LONG: "LONG",
   ULTRA: "ULTRA",
 };
+
+export const times = [
+  { label: "12'", value: 12 * 60 },
+  { label: "30'", value: 30 * 60 },
+  { label: "1h", value: 1 * 3600 },
+  { label: "2h", value: 2 * 3600 },
+  { label: "3h", value: 3 * 3600 },
+  { label: "4h", value: 4 * 3600 },
+  { label: "6h", value: 6 * 3600 },
+  { label: "8h", value: 8 * 3600 },
+];
 
 export const distances = [
   { label: "Mile", value: 1610 },
@@ -16,6 +28,7 @@ export const distances = [
   { label: "Marathon", value: 42195 },
   { label: "50K", value: 50000 },
   { label: "100K", value: 100000 },
+  { label: "100 Mi", value: 160934 },
 ];
 
 export const speeds = [
@@ -33,6 +46,11 @@ export const speeds = [
  */
 
 export const SETTINGS = {
+  [DISTANCES.DEFAULT]: {
+    time: { min: 60, max: 3600, value: 1800, step: 10, buttons: times },
+    dist: { min: 1000, max: 10000, value: 5000, step: 100, buttons: distances },
+    speed: { min: 6000, max: 18000, value: 12000, step: 100, buttons: speeds },
+  },
   [DISTANCES.SHORT]: {
     time: { min: 6, max: 120, step: 1, value: 10 },
     dist: { min: 60, max: 400, step: 10, value: 200, buttons: distances },
@@ -60,7 +78,7 @@ export const SETTINGS = {
   },
 };
 
-const DEFAULT_DISTANCE = DISTANCES.ALL;
+const DEFAULT_DISTANCE = DISTANCES.DEFAULT;
 
 export default function useSettings(initialState = DEFAULT_DISTANCE) {
   const [distSettings, setDistSettings] = useState(SETTINGS[DISTANCES[initialState]]);

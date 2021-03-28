@@ -1,45 +1,51 @@
 import { useState } from "react";
 import { calcSpeed, calcTime, calcDist } from "./calc";
 
+export const LOCKS = {
+  TIME: "TIME",
+  DIST: "DIST",
+  SPEED: "SPEED",
+};
+
 export default function useCalc(initialState) {
-  const { time: initialTime, dist: initialDist, speed: initialSpeed } = initialState;
+  const {
+    time: initialTime,
+    dist: initialDist,
+    speed: initialSpeed,
+    lock: initialLock = LOCKS.SPEED,
+  } = initialState;
 
   const [time, setTime] = useState(initialTime);
   const [dist, setDist] = useState(initialDist);
   const [speed, setSpeed] = useState(initialSpeed);
-  const [timeLocked, setTimeLocked] = useState(true);
+  const [lock, setLock] = useState(initialLock);
 
-  const updateTime = (newTime) => {
+  const updateTime = (evt, newTime) => {
     setTime(newTime);
-    setSpeed(calcSpeed(newTime, dist));
+
+    if (lock === LOCKS.DIST) setDist(calcDist(newTime, speed));
+    if (lock === LOCKS.SPEED) setSpeed(calcSpeed(newTime, dist));
   };
 
-  const updateDist = (newDist) => {
+  const updateDist = (evt, newDist) => {
     setDist(newDist);
-    if (timeLocked) setSpeed(calcSpeed(time, newDist));
-    else setTime(calcTime(newDist, speed));
+
+    if (lock === LOCKS.TIME) setTime(calcTime(newDist, speed));
+    if (lock === LOCKS.SPEED) setSpeed(calcSpeed(time, newDist));
   };
 
-  const updateSpeed = (newSpeed) => {
+  const updateSpeed = (evt, newSpeed) => {
     setSpeed(newSpeed);
-    if (timeLocked) setDist(calcDist(time, newSpeed));
-    else setTime(calcTime(dist, newSpeed));
+
+    if (lock === LOCKS.TIME) setTime(calcTime(dist, newSpeed));
+    if (lock === LOCKS.DIST) setDist(calcDist(time, newSpeed));
   };
 
-  const update = (key, newValue) => {
-    switch (key) {
-      case "time":
-        return updateTime(newValue ?? time);
-      case "dist":
-        return updateDist(newValue ?? dist);
-      case "speed":
-        return updateSpeed(newValue ?? speed);
-      case "timeLocked":
-        return setTimeLocked(newValue ?? !timeLocked);
-      default:
-        return null;
-    }
+  const update = {
+    time: updateTime,
+    dist: updateDist,
+    speed: updateSpeed,
   };
 
-  return [time, dist, speed, update];
+  return { time, dist, speed, update, lock, setLock };
 }

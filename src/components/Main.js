@@ -1,32 +1,15 @@
-import React, { useEffect } from "react";
-import { withStyles } from "@material-ui/core";
-import SplitButton from "./SplitButton";
+import React from "react";
 import SliderPicker from "./SliderPicker";
-import { ff00, secsToHms, useCalc, useSettings } from "../utils";
-import { DISTANCES } from "../utils/useSettings";
-import styles from "./styles";
+import { ff00, secsToHms, useCalc, useSettings, withLayout } from "../utils";
+import { LOCKS } from "../utils/useCalc";
 
-// const calcOptions = ["Time", "Distance", "Pace"];
-
-const Main = ({ classes }) => {
-  const [distSettings, setDistSetting] = useSettings();
-  // const [calcSetting, setCalcSetting] = useState(calcOptions);
-  const [time, dist, speed, update] = useCalc({
-    time: 90 * 60 + 20,
-    dist: 10000,
-    speed: 10000,
+const Main = () => {
+  const [settings] = useSettings();
+  const { time, dist, speed, lock, setLock, update } = useCalc({
+    time: settings.time.value,
+    dist: settings.dist.value,
+    speed: settings.speed.value,
   });
-
-  useEffect(() => {
-    update("time", distSettings.time.value);
-    update("dist", distSettings.dist.value);
-    // update("speed", distSettings.speed.value);
-  }, [distSettings, update]);
-
-  const handleTime = (evt, value) => update("time", value);
-  const handleDist = (evt, value) => update("dist", value);
-  const handleSpeed = (evt, value) => update("speed", value);
-  const handleDistSetting = (evt, value) => setDistSetting(value);
 
   const kph = speed / 1000;
   const mpk = 60 / kph;
@@ -34,32 +17,32 @@ const Main = ({ classes }) => {
 
   return (
     <>
-      <section>
-        <div className={classes.settings}>
-          <SplitButton onChange={handleDistSetting} options={Object.keys(DISTANCES)} />
-          {/* <SplitButton onChange={(s) => setCalcSetting(s)} options={calcOptions} /> */}
-        </div>
-      </section>
       <SliderPicker
         title={`Time ${secsToHms(time)}`}
-        onChange={handleTime}
-        {...distSettings.time}
+        locked={lock === LOCKS.TIME}
+        onChange={update.time}
+        onLockClick={() => setLock(LOCKS.TIME)}
+        {...settings.time}
         value={time}
       />
       <SliderPicker
         title={`Distance ${(dist / 1000).toFixed(1)}km`}
-        onChange={handleDist}
-        {...distSettings.dist}
+        locked={lock === LOCKS.DIST}
+        onChange={update.dist}
+        onLockClick={() => setLock(LOCKS.DIST)}
+        {...settings.dist}
         value={dist}
       />
       <SliderPicker
         title={`Pace ${ms}/km (${kph.toFixed(1)}kph)`}
-        onChange={handleSpeed}
-        {...distSettings.speed}
+        locked={lock === LOCKS.SPEED}
+        onChange={update.speed}
+        onLockClick={() => setLock(LOCKS.SPEED)}
+        {...settings.speed}
         value={speed}
       />
     </>
   );
 };
 
-export default withStyles(styles)(Main);
+export default withLayout(Main);
