@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SliderPicker = (props) => {
   const {
+    id,
     title,
     locked = false,
     buttons = [],
@@ -51,14 +52,15 @@ const SliderPicker = (props) => {
   return (
     <section className={classes.root}>
       <div className={classes.titleContainer}>
-        <Typography component="h1" variant="h6" className={classes.title}>
+        <Typography id={id} component="h1" variant="h6" className={classes.title}>
           {title}
         </Typography>
-        <ToggleLock locked={locked} onClick={onLockClick} />
+        <ToggleLock locked={locked} onClick={onLockClick} aria-label="Lock" />
       </div>
       <Slider
         classes={{ markLabel: classes.mark }}
         disabled={locked}
+        aria-labelledby={id}
         {...sliderProps}
         marks={marks}
         onChange={handleChange}

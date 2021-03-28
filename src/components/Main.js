@@ -18,6 +18,7 @@ const Main = () => {
   return (
     <>
       <SliderPicker
+        id="time"
         title={`Time ${secsToHms(time)}`}
         locked={lock === LOCKS.TIME}
         onChange={update.time}
@@ -26,6 +27,7 @@ const Main = () => {
         value={time}
       />
       <SliderPicker
+        id="dist"
         title={`Distance ${(dist / 1000).toFixed(1)}km`}
         locked={lock === LOCKS.DIST}
         onChange={update.dist}
@@ -34,6 +36,7 @@ const Main = () => {
         value={dist}
       />
       <SliderPicker
+        id="pace"
         title={`Pace ${ms}/km (${kph.toFixed(1)}kph)`}
         locked={lock === LOCKS.SPEED}
         onChange={update.speed}
