@@ -1,24 +1,30 @@
 import React from "react";
-import { Card, CardContent, Container } from "@material-ui/core";
+import { Card, CardContent, Container, makeStyles } from "@material-ui/core";
 
-const withLayout = (Component) => {
-  const num = Math.floor(Math.random() * 7);
-  const bgStyles = {
+const useStyles = makeStyles((theme) => ({
+  root: {
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
     backgroundAttachment: "fixed",
-    backgroundImage: `url(img/bg${num}.jpg)`,
     backgroundSize: "cover",
     minHeight: "100vh",
     display: "flex",
-  };
+  },
+  card: {
+    padding: theme.spacing(3),
+  },
+}));
+
+const withLayout = (Component) => (props) => {
+  const classes = useStyles();
+  const num = Math.floor(Math.random() * 7);
 
   return (
-    <main style={bgStyles}>
+    <main className={classes.root} style={{ backgroundImage: `url(img/bg${num}.jpg)` }}>
       <Container style={{ margin: "auto", width: "100vw" }}>
         <Card>
-          <CardContent style={{ padding: 24 }}>
-            <Component />
+          <CardContent className={classes.card}>
+            <Component {...props} />
           </CardContent>
         </Card>
       </Container>
