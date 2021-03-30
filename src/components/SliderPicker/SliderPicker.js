@@ -37,7 +37,7 @@ const SliderPicker = (props) => {
 
   useEffect(() => {
     setValue(value);
-  }, [value]);
+  }, [value, setValue]);
 
   const handleChange = (evt, val) => {
     sliderProps.onChange(evt, val);
