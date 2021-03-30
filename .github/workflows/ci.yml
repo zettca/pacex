@@ -25,6 +25,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Test-Jest
+        run: npm run test:jest
+
       # - name: Test-Cypress
       #   uses: cypress-io/github-action@v2
       #   with:
