@@ -1,7 +1,6 @@
 import React from "react";
-import SliderPicker from "./SliderPicker";
-import { ff00, secsToHms, useCalc, useSettings, withLayout } from "../utils";
-import { LOCKS } from "../utils/useCalc";
+import SliderPicker from "../SliderPicker";
+import { ff00, LOCKS, secsToHms, useCalc, useSettings, withLayout } from "../../utils";
 
 const Main = () => {
   const [settings] = useSettings();

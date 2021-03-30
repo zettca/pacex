@@ -45,8 +45,8 @@ const SliderPicker = (props) => {
   };
 
   const marks = [
-    { value: sliderProps.max, label: "+" },
     ...buttons.filter((btn) => btn.value < sliderProps.max),
+    { value: sliderProps.max, label: "+" },
   ];
 
   return (
