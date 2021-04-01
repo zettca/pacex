@@ -5,7 +5,9 @@ import { useSliderExpand } from "../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginBottom: theme.spacing(1),
+    "&:not(:last-child)": {
+      marginBottom: theme.spacing(3),
+    },
   },
   mark: {
     color: theme.palette.primary.light,

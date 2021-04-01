@@ -1,8 +1,10 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import SliderPicker from "../SliderPicker";
 import { ff00, LOCKS, secsToHms, useCalc, useSettings, withLayout } from "../../utils";
 
 const Main = () => {
+  const { t } = useTranslation();
   const [settings] = useSettings();
   const { time, dist, speed, lock, setLock, update } = useCalc({
     time: settings.time.value,
@@ -18,7 +20,7 @@ const Main = () => {
     <>
       <SliderPicker
         id="time"
-        title={`Time ${secsToHms(time)}`}
+        title={`${t("components.main.time")} ${secsToHms(time)}`}
         locked={lock === LOCKS.TIME}
         onChange={update.time}
         onLockClick={() => setLock(LOCKS.TIME)}
@@ -27,7 +29,7 @@ const Main = () => {
       />
       <SliderPicker
         id="dist"
-        title={`Distance ${(dist / 1000).toFixed(1)}km`}
+        title={`${t("components.main.distance")} ${(dist / 1000).toFixed(1)}km`}
         locked={lock === LOCKS.DIST}
         onChange={update.dist}
         onLockClick={() => setLock(LOCKS.DIST)}
@@ -36,7 +38,7 @@ const Main = () => {
       />
       <SliderPicker
         id="pace"
-        title={`Pace ${ms}/km (${kph.toFixed(1)}kph)`}
+        title={`${t("components.main.speed")} ${ms}/km (${kph.toFixed(1)}kph)`}
         locked={lock === LOCKS.SPEED}
         onChange={update.speed}
         onLockClick={() => setLock(LOCKS.SPEED)}

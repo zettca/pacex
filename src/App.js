@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { Suspense, useMemo } from "react";
 import {
   CssBaseline,
   ThemeProvider,
@@ -7,6 +7,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import Main from "./components/Main";
+import "./i18n";
 
 const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -23,10 +24,12 @@ const App = () => {
   );
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Main />
-    </ThemeProvider>
+    <Suspense fallback={<div />}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Main />
+      </ThemeProvider>
+    </Suspense>
   );
 };
 

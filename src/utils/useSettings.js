@@ -18,25 +18,30 @@ export const times = [
   { label: "4h", value: 4 * 3600 },
   { label: "6h", value: 6 * 3600 },
   { label: "8h", value: 8 * 3600 },
+  { label: "12h", value: 12 * 3600 },
+  { label: "24h", value: 24 * 3600 },
 ];
 
 export const distances = [
-  { label: "Mile", value: 1610 },
+  { label: "1 mi", value: 1610 },
   { label: "5K", value: 5000 },
   { label: "10K", value: 10000 },
   { label: "½ Marathon", value: 21097 },
   { label: "Marathon", value: 42195 },
   { label: "50K", value: 50000 },
+  { label: "50 mi", value: 80467 },
   { label: "100K", value: 100000 },
   { label: "100 Mi", value: 160934 },
 ];
 
 export const speeds = [
-  { label: "Walk", value: 6000 },
-  { label: "Jog", value: 8000 },
-  { label: "Run", value: 12000 },
-  { label: "Fast", value: 15000 },
+  { label: "🚶", value: 6000 },
+  { label: "🚶💨", value: 8000 },
+  { label: "🏃", value: 12000 },
+  { label: "🏃💨", value: 15000 },
+  { label: "Kipchoge", value: 21000 },
   { label: "Bekele", value: 24000 },
+  { label: "Bolt", value: 38000 },
 ];
 
 /**
@@ -49,7 +54,7 @@ export const SETTINGS = {
   [DISTANCES.DEFAULT]: {
     time: { min: 60, max: 3600, value: 1800, step: 10, buttons: times },
     dist: { min: 1000, max: 10000, value: 5000, step: 100, buttons: distances },
-    speed: { min: 6000, max: 18000, value: 12000, step: 100, buttons: speeds },
+    speed: { min: 6000, max: 16000, value: 12000, step: 100, buttons: speeds },
   },
   [DISTANCES.SHORT]: {
     time: { min: 6, max: 120, step: 1, value: 10 },

@@ -1,0 +1,21 @@
+{
+    "distances": {
+        "mile": "Mile",
+        "halfMarathon": "½ Marathon",
+        "marathon": "Marathon"
+    },
+    "speeds": {
+        "walk": "Walk",
+        "jog": "Jog",
+        "run": "Run",
+        "fastRun": "Fast"
+    },
+    "components": {
+        "main": {
+            "time": "Time",
+            "distance": "Distance",
+            "speed": "Speed",
+            "pace": "Pace"
+        }
+    }
+}
