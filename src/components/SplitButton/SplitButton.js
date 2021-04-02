@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ArrowDropDown } from "@material-ui/icons";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 

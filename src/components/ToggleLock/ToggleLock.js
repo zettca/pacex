@@ -1,4 +1,3 @@
-import React from "react";
 import { Lock, LockOpen } from "@material-ui/icons";
 import { IconButton } from "@material-ui/core";
 

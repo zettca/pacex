@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Slider, Typography, makeStyles } from "@material-ui/core";
 import ToggleLock from "../ToggleLock";
 import { useSliderExpand } from "../../utils";
