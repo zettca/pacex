@@ -9,8 +9,7 @@ i18n
   .use(initReactI18next)
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    fallbackLng: ["en"],
-    nonExplicitSupportedLngs: true,
+    fallbackLng: "en",
 
     debug: true,
 
@@ -19,7 +18,7 @@ i18n
     },
 
     backend: {
-      loadPath: "/locales/{{lng}}.json",
+      loadPath: "locales/{{lng}}.json",
     },
 
     interpolation: {
