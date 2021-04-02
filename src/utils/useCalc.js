@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { calcSpeed, calcTime, calcDist } from "./calc";
 
 export const LOCKS = {
@@ -9,9 +9,9 @@ export const LOCKS = {
 
 export default function useCalc(initialState) {
   const {
-    time: initialTime,
-    dist: initialDist,
-    speed: initialSpeed,
+    time: initialTime = 0,
+    dist: initialDist = 0,
+    speed: initialSpeed = 0,
     lock: initialLock = LOCKS.SPEED,
   } = initialState;
 
@@ -19,6 +19,18 @@ export default function useCalc(initialState) {
   const [dist, setDist] = useState(initialDist);
   const [speed, setSpeed] = useState(initialSpeed);
   const [lock, setLock] = useState(initialLock);
+
+  useEffect(() => {
+    switch (initialLock) {
+      case LOCKS.TIME:
+        return setTime(calcTime(initialDist, initialSpeed));
+      case LOCKS.DIST:
+        return setDist(calcDist(initialTime, initialSpeed));
+      case LOCKS.SPEED:
+      default:
+        return setSpeed(calcSpeed(initialTime, initialDist));
+    }
+  }, [initialTime, initialDist, initialSpeed, initialLock]);
 
   const updateTime = (evt, newTime) => {
     setTime(newTime);
