@@ -1,17 +1,26 @@
 {
-  "extends": ["airbnb", "prettier", "react-app", "react-app/jest"],
-  "plugins": ["prettier", "react-hooks"],
-  "parser": "babel-eslint",
+  "extends": ["airbnb-typescript", "airbnb/hooks", "prettier", "react-app", "react-app/jest"],
+  "plugins": ["react", "prettier", "@typescript-eslint", "react-hooks", "jest"],
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
-    "node": true,
-    "commonjs": true,
     "es6": true
   },
   "rules": {
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": "off",
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["error"]
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   }
 }

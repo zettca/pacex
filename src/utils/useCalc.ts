@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
 import { calcSpeed, calcTime, calcDist } from "./calc";
 
-export const LOCKS = {
-  TIME: "TIME",
-  DIST: "DIST",
-  SPEED: "SPEED",
-};
+export enum LOCKS {
+  TIME,
+  DIST,
+  SPEED,
+}
 
-export default function useCalc(initialState) {
-  const {
-    time: initialTime = 0,
-    dist: initialDist = 0,
-    speed: initialSpeed = 0,
-    lock: initialLock = LOCKS.SPEED,
-  } = initialState;
-
-  const [time, setTime] = useState(initialTime);
-  const [dist, setDist] = useState(initialDist);
-  const [speed, setSpeed] = useState(initialSpeed);
-  const [lock, setLock] = useState(initialLock);
+export default function useCalc({
+  time: initialTime = 0,
+  dist: initialDist = 0,
+  speed: initialSpeed = 0,
+  lock: initialLock = LOCKS.SPEED,
+}) {
+  const [time, setTime] = useState<number>(initialTime);
+  const [dist, setDist] = useState<number>(initialDist);
+  const [speed, setSpeed] = useState<number>(initialSpeed);
+  const [lock, setLock] = useState<LOCKS>(initialLock);
 
   useEffect(() => {
     switch (initialLock) {
@@ -32,21 +30,21 @@ export default function useCalc(initialState) {
     }
   }, [initialTime, initialDist, initialSpeed, initialLock]);
 
-  const updateTime = (evt, newTime) => {
+  const updateTime = (evt: Event, newTime: number) => {
     setTime(newTime);
 
     if (lock === LOCKS.DIST) setDist(calcDist(newTime, speed));
     if (lock === LOCKS.SPEED) setSpeed(calcSpeed(newTime, dist));
   };
 
-  const updateDist = (evt, newDist) => {
+  const updateDist = (evt: Event, newDist: number) => {
     setDist(newDist);
 
     if (lock === LOCKS.TIME) setTime(calcTime(newDist, speed));
     if (lock === LOCKS.SPEED) setSpeed(calcSpeed(time, newDist));
   };
 
-  const updateSpeed = (evt, newSpeed) => {
+  const updateSpeed = (evt: Event, newSpeed: number) => {
     setSpeed(newSpeed);
 
     if (lock === LOCKS.TIME) setTime(calcTime(dist, newSpeed));

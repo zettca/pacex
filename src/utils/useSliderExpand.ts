@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const useSliderExpand = ({
   min: initMin = 0,
@@ -12,7 +12,7 @@ const useSliderExpand = ({
   const [max, setMax] = useState(initMax);
   const [value, setValue] = useState(initValue);
 
-  const onChange = (evt, val) => {
+  const onChange = (evt: ChangeEvent, val: number) => {
     if (value === val && val < max) return;
     setValue(val);
   };

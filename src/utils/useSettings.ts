@@ -1,15 +1,26 @@
 import { useState } from "react";
 
-export const DISTANCES = {
-  DEFAULT: "DEFAULT",
-  ALL: "ALL",
-  SHORT: "SHORT",
-  MEDIUM: "MEDIUM",
-  LONG: "LONG",
-  ULTRA: "ULTRA",
+export enum DISTANCES {
+  DEFAULT,
+  ALL,
+  SHORT,
+  MEDIUM,
+  LONG,
+  ULTRA,
+}
+
+export type Mark = { label: string; value: number };
+export type SliderConfig = {
+  min?: number;
+  max?: number;
+  step?: number;
+  value?: number;
+  buttons?: Mark[];
 };
 
-export const times = [
+export type DistanceSetting = Record<"time" | "dist" | "speed", SliderConfig>;
+
+export const times: Mark[] = [
   { label: "12'", value: 12 * 60 },
   { label: "30'", value: 30 * 60 },
   { label: "1h", value: 1 * 3600 },
@@ -22,7 +33,7 @@ export const times = [
   { label: "24h", value: 24 * 3600 },
 ];
 
-export const distances = [
+export const distances: Mark[] = [
   { label: "1 mi", value: 1610 },
   { label: "5K", value: 5000 },
   { label: "10K", value: 10000 },
@@ -34,12 +45,11 @@ export const distances = [
   { label: "100 Mi", value: 160934 },
 ];
 
-export const speeds = [
+export const speeds: Mark[] = [
   { label: "🚶", value: 6000 },
   { label: "🚶💨", value: 8000 },
   { label: "🏃", value: 12000 },
   { label: "🏃💨", value: 15000 },
-  { label: "Kipchoge", value: 21000 },
   { label: "Bekele", value: 24000 },
   { label: "Bolt", value: 38000 },
 ];
@@ -49,12 +59,11 @@ export const speeds = [
  * `dist` in meters
  * `speed` in meters/hour
  */
-
-export const SETTINGS = {
+export const SETTINGS: Record<DISTANCES, DistanceSetting> = {
   [DISTANCES.DEFAULT]: {
-    time: { min: 60, max: 3600, value: 1800, step: 10, buttons: times },
-    dist: { min: 1000, max: 10000, value: 5000, step: 100, buttons: distances },
-    speed: { min: 6000, max: 16000, value: 12000, step: 100, buttons: speeds },
+    time: { min: 60, max: 3600, step: 10, buttons: times },
+    dist: { min: 1000, max: 10000, step: 100, buttons: distances },
+    speed: { min: 6000, max: 16000, step: 100, buttons: speeds },
   },
   [DISTANCES.SHORT]: {
     time: { min: 6, max: 120, step: 1, value: 10 },
@@ -85,11 +94,11 @@ export const SETTINGS = {
 
 const DEFAULT_DISTANCE = DISTANCES.DEFAULT;
 
-export default function useSettings(initialState = DEFAULT_DISTANCE) {
-  const [distSettings, setDistSettings] = useState(SETTINGS[DISTANCES[initialState]]);
+export default function useSettings(initialState = DISTANCES.DEFAULT) {
+  const [distSettings, setDistSettings] = useState<DistanceSetting>(SETTINGS[initialState]);
 
-  const setDistance = (newDist) => {
-    setDistSettings(SETTINGS[DISTANCES[newDist]] ?? SETTINGS[DEFAULT_DISTANCE]);
+  const setDistance = (newDist: DISTANCES) => {
+    setDistSettings(SETTINGS[newDist] ?? SETTINGS[DEFAULT_DISTANCE]);
   };
 
   return [distSettings, setDistance];

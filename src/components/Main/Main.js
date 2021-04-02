@@ -7,9 +7,8 @@ const Main = () => {
   const { t } = useTranslation();
   const [settings] = useSettings();
   const { time, dist, speed, lock, setLock, update } = useCalc({
-    time: settings.time.value,
-    dist: settings.dist.value,
-    speed: settings.speed.value,
+    time: 1800,
+    dist: 5000,
   });
 
   const kph = speed / 1000;
@@ -38,7 +37,7 @@ const Main = () => {
       />
       <SliderPicker
         id="pace"
-        title={`${t("components.main.speed")} ${ms}/km (${kph.toFixed(1)}kph)`}
+        title={`${t("components.main.speed")} ${ms}/km (${kph.toFixed(1)}km/h)`}
         locked={lock === LOCKS.SPEED}
         onChange={update.speed}
         onLockClick={() => setLock(LOCKS.SPEED)}

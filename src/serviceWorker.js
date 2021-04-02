@@ -10,7 +10,7 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://cra.link/PWA
 
-/* eslint-disable no-use-before-define, no-param-reassign, no-console */
+/* eslint-disable @typescript-eslint/no-use-before-define, no-param-reassign, no-console */
 
 const isLocalhost = Boolean(
   window.location.hostname === "localhost" ||
