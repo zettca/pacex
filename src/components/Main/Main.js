@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import SliderPicker from "../SliderPicker";
-import { ff00, LOCKS, secsToHms, useCalc, useSettings, withLayout } from "../../utils";
+import { LOCKS, format, useCalc, useSettings, withLayout } from "../../utils";
 
 const Main = () => {
   const { t } = useTranslation();
@@ -11,15 +11,15 @@ const Main = () => {
     dist: 5000,
   });
 
-  const kph = speed / 1000;
-  const mpk = 60 / kph;
-  const ms = [mpk, (mpk % 1) * 60].map(ff00).join(":");
+  const timeF = useMemo(() => format.time(time), [time]);
+  const distF = useMemo(() => format.dist(dist), [dist]);
+  const { minKm, kmHr } = useMemo(() => format.speed(speed), [speed]);
 
   return (
     <>
       <SliderPicker
         id="time"
-        title={`${t("components.main.time")} ${secsToHms(time)}`}
+        title={`${t("components.main.time")} ${timeF}`}
         locked={lock === LOCKS.TIME}
         onChange={update.time}
         onLockClick={() => setLock(LOCKS.TIME)}
@@ -28,7 +28,7 @@ const Main = () => {
       />
       <SliderPicker
         id="dist"
-        title={`${t("components.main.distance")} ${(dist / 1000).toFixed(1)}km`}
+        title={`${t("components.main.distance")} ${distF}km`}
         locked={lock === LOCKS.DIST}
         onChange={update.dist}
         onLockClick={() => setLock(LOCKS.DIST)}
@@ -37,7 +37,7 @@ const Main = () => {
       />
       <SliderPicker
         id="pace"
-        title={`${t("components.main.speed")} ${ms}/km (${kph.toFixed(1)}km/h)`}
+        title={`${t("components.main.speed")} ${minKm}/km (${kmHr}km/h)`}
         locked={lock === LOCKS.SPEED}
         onChange={update.speed}
         onLockClick={() => setLock(LOCKS.SPEED)}
