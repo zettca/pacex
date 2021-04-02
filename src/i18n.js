@@ -11,7 +11,7 @@ i18n
   .init({
     fallbackLng: "en",
 
-    debug: true,
+    // debug: true,
 
     detection: {
       caches: [],
