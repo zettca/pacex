@@ -61,7 +61,7 @@ export const speeds: Mark[] = [
  */
 export const SETTINGS: Record<DISTANCES, DistanceSetting> = {
   [DISTANCES.DEFAULT]: {
-    time: { min: 60, max: 3600, step: 10, buttons: times },
+    time: { min: 60, max: 3600, step: 20, buttons: times },
     dist: { min: 1000, max: 10000, step: 100, buttons: distances },
     speed: { min: 6000, max: 16000, step: 100, buttons: speeds },
   },
