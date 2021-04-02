@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
-import { calcSpeed, calcTime, calcDist } from "./calc";
 
 export enum LOCKS {
   TIME,
   DIST,
   SPEED,
 }
+
+const HOUR = 60 * 60;
+export const calcTime = (dist: number, speed: number) => (dist / speed) * HOUR; // seconds
+export const calcDist = (time: number, speed: number) => (speed * time) / HOUR; // meters
+export const calcPace = (time: number, dist: number) => (time / dist) * 1000; // seconds(/km)
+export const calcSpeed = (time: number, dist: number) => (dist * HOUR) / time; // meters(/hour)
 
 export default function useCalc({
   time: initialTime = 0,

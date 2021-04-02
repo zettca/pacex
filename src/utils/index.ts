@@ -1,5 +1,3 @@
-export * from "./calc";
-
 export * from "./formats";
 
 export { default as useCalc } from "./useCalc";
