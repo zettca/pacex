@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, CardContent, Container, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,9 +15,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const withLayout = (Component) => (props) => {
+const withLayout = <P extends object>(Component: React.ComponentType<P>): React.FC<P> => (
+  props: P,
+) => {
   const classes = useStyles();
-  const num = Math.floor(Math.random() * 7);
+  const num = Math.floor(Math.random() * 3);
 
   return (
     <main className={classes.root} style={{ backgroundImage: `url(img/bg${num}.jpg)` }}>

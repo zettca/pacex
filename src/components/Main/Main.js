@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import SliderPicker from "../SliderPicker";
-import { LOCKS, format, useCalc, useSettings, withLayout } from "../../utils";
+import withLayout from "../withLayout";
+import { LOCKS, format, useCalc, useSettings } from "../../utils";
 
 const Main = () => {
   const { t } = useTranslation();
