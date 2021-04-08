@@ -28,13 +28,13 @@ jobs:
       - name: Test-Jest
         run: npm run test:jest
 
-      # - name: Test-Cypress
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     start: npm start
-      #     # build: npx cypress info
-      #     wait-on: "http://localhost:3000"
-      #     wait-on-timeout: 60
+      - name: Test-Cypress
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          # build: npx cypress info
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 60
 
       - name: Build
         run: npm run build
