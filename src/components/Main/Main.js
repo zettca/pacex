@@ -38,7 +38,7 @@ const Main = () => {
       />
       <SliderPicker
         id="pace"
-        title={`${t("components.main.speed")} ${minKm}/km (${kmHr}km/h)`}
+        title={`${t("components.main.pace")} ${minKm}/km (${kmHr}km/h)`}
         locked={lock === LOCKS.SPEED}
         onChange={update.speed}
         onLockClick={() => setLock(LOCKS.SPEED)}
