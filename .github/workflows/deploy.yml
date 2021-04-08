@@ -1,4 +1,4 @@
-name: CI
+name: Deploy
 
 on:
   push:
@@ -20,21 +20,13 @@ jobs:
           node-version: 12
 
       - name: Install
-        run: npm install
+        run: npm ci
 
       - name: Lint
         run: npm run lint
 
       - name: Test-Jest
         run: npm run test:jest
-
-      - name: Test-Cypress
-        uses: cypress-io/github-action@v2
-        with:
-          start: npm start
-          # build: npx cypress info
-          wait-on: "http://localhost:3000"
-          wait-on-timeout: 60
 
       - name: Build
         run: npm run build

@@ -1,0 +1,31 @@
+name: Cypress
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  CI: true
+
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Install
+        run: npm ci
+
+      - name: Test-Cypress
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start
+          # build: npx cypress info
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 60
