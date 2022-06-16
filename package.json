@@ -1,6 +1,7 @@
 {
   "name": "pacex",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "private": true,
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -8,17 +9,16 @@
   },
   "homepage": ".",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "npm run test:jest",
-    "test:jest": "react-scripts test --watchAll=false",
-    "test:cypress": "npx cypress run",
+    "start": "vite",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest",
+    "cypress": "npx cypress run",
     "lint": "run-p lint:*",
     "lint:eslint": "npx eslint src --color --cache",
     "lint:prettier": "npx prettier --check 'src/**/*.{html,css,ts,tsx}'",
     "predeploy": "npm run build && npm run test",
-    "deploy": "gh-pages -d build",
-    "eject": "react-scripts eject"
+    "deploy": "gh-pages -d dist"
   },
   "browserslist": {
     "production": [
@@ -35,7 +35,6 @@
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.1",
     "i18next": "^20.1.0",
@@ -44,8 +43,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-i18next": "^11.8.12",
-    "react-scripts": "^4.0.3",
-    "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
     "workbox-cacheable-response": "^5.1.4",
@@ -60,26 +57,22 @@
     "workbox-streams": "^5.1.4"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.22",
-    "@types/node": "^14.14.37",
+    "@testing-library/jest-dom": "^5.16.4",
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.20.0",
     "@typescript-eslint/parser": "^4.20.0",
+    "@vitejs/plugin-react": "^1.3.2",
     "cypress": "^6.8.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-airbnb-typescript-prettier": "^5.0.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jest": "^24.3.2",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-react": "^7.23.1",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-import-resolver-typescript": "^2.7.1",
     "gh-pages": "^3.1.0",
+    "jsdom": "^19.0.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.2.1",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "vite": "^2.9.12",
+    "vite-tsconfig-paths": "^3.5.0",
+    "vitest": "^0.15.1"
   }
 }

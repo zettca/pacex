@@ -13,11 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
+      - uses: actions/setup-node@v3
 
       - name: Install
         run: npm ci
@@ -25,8 +23,8 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Test-Jest
-        run: npm run test:jest
+      - name: Test
+        run: npm run test
 
       - name: Build
         run: npm run build
@@ -34,5 +32,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          publish_dir: ./build
+          deploy_key: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

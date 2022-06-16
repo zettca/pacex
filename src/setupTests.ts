@@ -3,10 +3,11 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 
-jest.mock("react-i18next", () => ({
+vi.mock("react-i18next", () => ({
   useTranslation: () => ({
-    t: (str) => str,
+    t: (str: string) => str,
     i18n: { changeLanguage: () => new Promise(() => {}) },
   }),
 }));

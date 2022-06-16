@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export enum DISTANCES {
   DEFAULT,
@@ -94,12 +94,14 @@ export const SETTINGS: Record<DISTANCES, DistanceSetting> = {
 
 const DEFAULT_DISTANCE = DISTANCES.DEFAULT;
 
-export default function useSettings(initialState = DISTANCES.DEFAULT) {
+export default function useSettings(
+  initialState = DISTANCES.DEFAULT,
+): [DistanceSetting, (distance: DISTANCES) => void] {
   const [distSettings, setDistSettings] = useState<DistanceSetting>(SETTINGS[initialState]);
 
-  const setDistance = (newDist: DISTANCES) => {
+  const setDistance = useCallback((newDist: DISTANCES) => {
     setDistSettings(SETTINGS[newDist] ?? SETTINGS[DEFAULT_DISTANCE]);
-  };
+  }, []);
 
   return [distSettings, setDistance];
 }
