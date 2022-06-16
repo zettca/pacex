@@ -1,11 +1,5 @@
 import { Suspense, useMemo } from "react";
-import {
-  CssBaseline,
-  ThemeProvider,
-  colors,
-  createMuiTheme,
-  useMediaQuery,
-} from "@material-ui/core";
+import { CssBaseline, ThemeProvider, colors, useMediaQuery, createTheme } from "@material-ui/core";
 import Main from "~/components/Main";
 import "./i18n";
 
@@ -14,7 +8,7 @@ const App = () => {
 
   const theme = useMemo(
     () =>
-      createMuiTheme({
+      createTheme({
         palette: {
           type: prefersDarkMode ? "dark" : "light",
           primary: { main: colors.orange[400] || colors.teal[400] },
