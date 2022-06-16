@@ -1,4 +1,12 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+
+type SliderParams = {
+  min: number;
+  max: number;
+  value: number;
+  onChange: (evt: ChangeEvent, val: number) => void;
+  onChangeCommitted: () => void;
+};
 
 const useSliderExpand = ({
   min: initMin = 0,
@@ -8,11 +16,11 @@ const useSliderExpand = ({
   decMult = 1.1,
   incThresh = 0.95,
   decThresh = 0.6,
-}) => {
+}): [SliderParams, Dispatch<SetStateAction<number>>] => {
   const [max, setMax] = useState(initMax);
   const [value, setValue] = useState(initValue);
 
-  const onChange = (evt: ChangeEvent, val: number) => {
+  const onChange: SliderParams["onChange"] = (evt, val) => {
     if (value === val && val < max) return;
     setValue(val);
   };

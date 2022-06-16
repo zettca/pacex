@@ -1,8 +1,10 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { format } from "~/utils/formats";
+import useCalc, { LOCKS } from "~/hooks/useCalc";
+import useSettings from "~/hooks/useSettings";
 import SliderPicker from "../SliderPicker";
 import withLayout from "../withLayout";
-import { LOCKS, format, useCalc, useSettings } from "../../utils";
 
 const Main = () => {
   const { t } = useTranslation();

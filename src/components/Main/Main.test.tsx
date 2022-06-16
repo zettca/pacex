@@ -1,14 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Main from "./components/Main";
-
-jest.mock("react-i18next", () => ({
-  useTranslation: () => ({
-    t: (str) => str,
-    i18n: {
-      changeLanguage: () => new Promise(() => {}),
-    },
-  }),
-}));
+import Main from ".";
 
 describe("App renders", () => {
   test("main", () => {

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Slider, Typography, makeStyles } from "@material-ui/core";
+import useSliderExpand from "~/hooks/useSliderExpand";
 import ToggleLock from "../ToggleLock";
-import { useSliderExpand } from "../../utils";
 
 const useStyles = makeStyles((theme) => ({
   root: {

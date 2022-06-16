@@ -1,20 +1,26 @@
 {
-  "extends": ["airbnb-typescript", "airbnb/hooks", "prettier", "react-app", "react-app/jest"],
-  "plugins": ["react", "prettier", "@typescript-eslint", "react-hooks", "jest"],
+  "extends": ["airbnb-typescript-prettier", "react-app", "react-app/jest"],
   "parser": "@typescript-eslint/parser",
-  "env": {
-    "browser": true,
-    "es6": true
-  },
   "rules": {
-    "react/jsx-filename-extension": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/prop-types": "off",
-    "no-unused-expressions": "off",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+
+    "no-restricted-exports": "off",
 
     "react/react-in-jsx-scope": "off",
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": ["error"]
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
+
+    // "@typescript-eslint/no-use-before-define": ["error"]
   },
   "parserOptions": {
     "ecmaFeatures": {

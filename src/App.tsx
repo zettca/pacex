@@ -6,7 +6,7 @@ import {
   createMuiTheme,
   useMediaQuery,
 } from "@material-ui/core";
-import Main from "./components/Main";
+import Main from "~/components/Main";
 import "./i18n";
 
 const App = () => {
