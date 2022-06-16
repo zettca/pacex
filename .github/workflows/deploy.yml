@@ -33,7 +33,7 @@ jobs:
         with:
           name: dist
           path: dist/
-          retention-days: 5
+          retention-days: 1
 
   E2E-Tests:
     runs-on: ubuntu-latest
@@ -68,11 +68,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-
-      - name: Create GitHub deployment
-        uses: chrnorm/deployment-action@v2
-        id: deployment
-        with:
-          token: "${{ secrets.GITHUB_TOKEN }}"
-          environment-url: https://zettca.github.io/pacex/
-          environment: production
