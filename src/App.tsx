@@ -1,7 +1,8 @@
-import { Suspense, useMemo } from "react";
+import { lazy, Suspense, useMemo } from "react";
 import { CssBaseline, ThemeProvider, colors, useMediaQuery, createTheme } from "@material-ui/core";
-import Main from "~/components/Main";
 import "./i18n";
+
+const Main = lazy(() => import("~/components/Main"));
 
 const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
