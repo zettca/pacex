@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   },
   card: {
     padding: theme.spacing(3),
+    gap: theme.spacing(3),
+    display: "flex",
+    flexDirection: "column",
   },
 }));
 

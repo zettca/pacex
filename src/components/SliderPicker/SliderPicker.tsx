@@ -1,25 +1,27 @@
 import { useEffect } from "react";
-import { Slider, Typography, SliderProps, Radio, RadioProps, makeStyles } from "@material-ui/core";
+import {
+  Slider,
+  Typography,
+  SliderProps,
+  Radio,
+  RadioProps,
+  makeStyles,
+  FormControlLabel,
+} from "@material-ui/core";
 import type { SliderConfig, SliderParams } from "~/types";
 import useSliderExpand from "~/hooks/useSliderExpand";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    "&:not(:last-child)": {
-      marginBottom: theme.spacing(3),
-    },
-  },
+  root: {},
   mark: {
+    cursor: "pointer",
     color: theme.palette.primary.light,
   },
   titleContainer: {
     display: "flex",
     alignItems: "center",
   },
-  title: {
-    display: "inline-block",
-    marginRight: theme.spacing(1),
-  },
+  title: {},
 }));
 
 export interface SliderPickerProps extends Omit<SliderProps, "onChange"> {
@@ -62,10 +64,14 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
   return (
     <section className={classes.root}>
       <div className={classes.titleContainer}>
-        <Typography id={id} component="h1" variant="h6" className={classes.title}>
-          {title}
-        </Typography>
-        <Radio color="primary" size="small" checked={locked} onClick={onLockClick} />
+        <FormControlLabel
+          control={<Radio color="primary" size="small" checked={locked} onClick={onLockClick} />}
+          label={
+            <Typography id={id} component="h1" variant="h6" className={classes.title}>
+              {title}
+            </Typography>
+          }
+        />
       </div>
       <Slider
         classes={{ markLabel: classes.mark }}
