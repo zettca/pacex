@@ -44,7 +44,7 @@ describe("Slider mark clicking", () => {
   describe("Pace", () => {
     beforeEach(() => {
       cy.visit("/");
-      cy.get("[aria-label=Lock]").first().click();
+      cy.get("input[type=radio]").first().click();
     });
 
     it("Walk 10:00/km", () => {
@@ -125,7 +125,7 @@ describe("Slider growing", () => {
   describe("Pace", () => {
     beforeEach(() => {
       cy.visit("/");
-      cy.get("[aria-label=Lock]").first().click();
+      cy.get("input[type=radio]").first().click();
     });
 
     it("growing", () => {

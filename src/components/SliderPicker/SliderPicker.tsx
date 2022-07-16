@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { Slider, Typography, makeStyles } from "@material-ui/core";
+import { Slider, Typography, SliderProps, Radio, RadioProps, makeStyles } from "@material-ui/core";
+import type { SliderConfig, SliderParams } from "~/types";
 import useSliderExpand from "~/hooks/useSliderExpand";
-import ToggleLock from "../ToggleLock";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   titleContainer: {
     display: "flex",
+    alignItems: "center",
   },
   title: {
     display: "inline-block",
@@ -21,19 +22,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SliderPicker = (props) => {
-  const {
-    id,
-    title,
-    locked = false,
-    buttons = [],
-    onChange,
-    onLockClick,
-    min,
-    max,
-    value,
-    ...others
-  } = props;
+export interface SliderPickerProps extends Omit<SliderProps, "onChange"> {
+  locked: boolean;
+  buttons: SliderConfig["buttons"];
+  value: number;
+  onChange?: SliderParams["onChange"];
+  onLockClick?: RadioProps["onClick"];
+}
+
+const SliderPicker: React.FC<SliderPickerProps> = ({
+  id,
+  title,
+  locked = false,
+  buttons = [],
+  onChange,
+  onLockClick,
+  min,
+  max,
+  value,
+  ...others
+}) => {
   const classes = useStyles();
   const [sliderProps, setValue] = useSliderExpand({ min, max, value });
 
@@ -57,7 +65,7 @@ const SliderPicker = (props) => {
         <Typography id={id} component="h1" variant="h6" className={classes.title}>
           {title}
         </Typography>
-        <ToggleLock locked={locked} onClick={onLockClick} aria-label="Lock" />
+        <Radio color="primary" size="small" checked={locked} onClick={onLockClick} />
       </div>
       <Slider
         classes={{ markLabel: classes.mark }}

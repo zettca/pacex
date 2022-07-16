@@ -1,24 +1,5 @@
 import { useCallback, useState } from "react";
-
-export enum DISTANCES {
-  DEFAULT,
-  ALL,
-  SHORT,
-  MEDIUM,
-  LONG,
-  ULTRA,
-}
-
-export type Mark = { label: string; value: number };
-export type SliderConfig = {
-  min?: number;
-  max?: number;
-  step?: number;
-  value?: number;
-  buttons?: Mark[];
-};
-
-export type DistanceSetting = Record<"time" | "dist" | "speed", SliderConfig>;
+import { DISTANCES, DistanceSetting, Mark } from "~/types";
 
 export const times: Mark[] = [
   { label: "12'", value: 12 * 60 },
@@ -60,47 +41,45 @@ export const speeds: Mark[] = [
  * `speed` in meters/hour
  */
 export const SETTINGS: Record<DISTANCES, DistanceSetting> = {
-  [DISTANCES.DEFAULT]: {
+  DEFAULT: {
     time: { min: 60, max: 3600, step: 20, buttons: times },
     dist: { min: 1000, max: 10000, step: 100, buttons: distances },
     speed: { min: 6000, max: 16000, step: 100, buttons: speeds },
   },
-  [DISTANCES.SHORT]: {
+  SHORT: {
     time: { min: 6, max: 120, step: 1, value: 10 },
     dist: { min: 60, max: 400, step: 10, value: 200, buttons: distances },
     speed: { min: 10000, max: 50000, step: 100, value: 16000, buttons: speeds },
   },
-  [DISTANCES.MEDIUM]: {
+  MEDIUM: {
     time: { min: 40, max: 3600, step: 1, value: 600 },
     dist: { min: 400, max: 5000, step: 100, value: 1500, buttons: distances },
     speed: { min: 8000, max: 40000, step: 100, value: 14000, buttons: speeds },
   },
-  [DISTANCES.LONG]: {
+  LONG: {
     time: { min: 600, max: 21600, step: 2, value: 1200 },
     dist: { min: 5000, max: 42000, step: 100, value: 10000, buttons: distances },
     speed: { min: 4000, max: 32000, step: 100, value: 12000, buttons: speeds },
   },
-  [DISTANCES.ULTRA]: {
+  ULTRA: {
     time: { min: 10, max: 100, step: 2, value: 10 },
     dist: { min: 10, max: 100, step: 2, value: 10, buttons: distances },
     speed: { min: 10, max: 100, step: 2, value: 10, buttons: speeds },
   },
-  [DISTANCES.ALL]: {
+  ALL: {
     time: { min: 60, max: 86400, step: 20 },
     dist: { min: 100, max: 50000, step: 100, buttons: distances },
     speed: { min: 6000, max: 24000, step: 100, buttons: speeds },
   },
 };
 
-const DEFAULT_DISTANCE = DISTANCES.DEFAULT;
-
 export default function useSettings(
-  initialState = DISTANCES.DEFAULT,
+  initialState = "DEFAULT",
 ): [DistanceSetting, (distance: DISTANCES) => void] {
   const [distSettings, setDistSettings] = useState<DistanceSetting>(SETTINGS[initialState]);
 
   const setDistance = useCallback((newDist: DISTANCES) => {
-    setDistSettings(SETTINGS[newDist] ?? SETTINGS[DEFAULT_DISTANCE]);
+    setDistSettings(SETTINGS[newDist] ?? SETTINGS.DEFAULT);
   }, []);
 
   return [distSettings, setDistance];

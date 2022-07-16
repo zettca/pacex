@@ -1,12 +1,5 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-
-type SliderParams = {
-  min: number;
-  max: number;
-  value: number;
-  onChange: (evt: ChangeEvent, val: number) => void;
-  onChangeCommitted: () => void;
-};
+import { Dispatch, SetStateAction, useState } from "react";
+import type { SliderParams } from "~/types";
 
 const useSliderExpand = ({
   min: initMin = 0,

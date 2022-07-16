@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb-typescript-prettier"],
+  "extends": ["airbnb-typescript-prettier", "ts-react-important-stuff"],
   "parser": "@typescript-eslint/parser",
   "rules": {
     "no-restricted-exports": "off",
@@ -13,6 +13,7 @@
     ],
 
     "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
     "react/function-component-definition": [
       2,
@@ -34,7 +35,7 @@
     "ecmaFeatures": {
       "jsx": true
     },
-    "ecmaVersion": 2020,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "project": "./tsconfig.json"
   }
