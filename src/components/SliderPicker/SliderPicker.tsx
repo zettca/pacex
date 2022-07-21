@@ -7,6 +7,7 @@ import {
   RadioProps,
   makeStyles,
   FormControlLabel,
+  Fade,
 } from "@material-ui/core";
 import type { SliderConfig, SliderParams } from "~/types";
 import useSliderExpand from "~/hooks/useSliderExpand";
@@ -26,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 export interface SliderPickerProps extends Omit<SliderProps, "onChange"> {
   locked: boolean;
-  buttons: SliderConfig["buttons"];
+  buttons?: SliderConfig["buttons"];
   value: number;
   onChange?: SliderParams["onChange"];
   onLockClick?: RadioProps["onClick"];
@@ -67,21 +68,28 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
         <FormControlLabel
           control={<Radio color="primary" size="small" checked={locked} onClick={onLockClick} />}
           label={
-            <Typography id={id} component="h1" variant="h6" className={classes.title}>
+            <Typography
+              color={locked ? "primary" : "initial"}
+              component="h1"
+              variant="h6"
+              className={classes.title}
+            >
               {title}
             </Typography>
           }
         />
       </div>
-      <Slider
-        classes={{ markLabel: classes.mark }}
-        disabled={locked}
-        aria-labelledby={id}
-        {...sliderProps}
-        marks={marks}
-        onChange={handleChange}
-        {...others}
-      />
+      <Fade in={!locked} timeout={800}>
+        <Slider
+          classes={{ markLabel: classes.mark }}
+          disabled={locked}
+          aria-labelledby={id}
+          {...sliderProps}
+          marks={marks}
+          onChange={handleChange}
+          {...others}
+        />
+      </Fade>
     </section>
   );
 };

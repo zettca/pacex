@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 
 export enum LOCKS {
   TIME,
@@ -35,21 +35,21 @@ export default function useCalc({
     }
   }, [initialTime, initialDist, initialSpeed, initialLock]);
 
-  const updateTime = (evt: Event, newTime: number) => {
+  const updateTime = (evt: SyntheticEvent, newTime: number) => {
     setTime(newTime);
 
     if (lock === LOCKS.DIST) setDist(calcDist(newTime, speed));
     if (lock === LOCKS.SPEED) setSpeed(calcSpeed(newTime, dist));
   };
 
-  const updateDist = (evt: Event, newDist: number) => {
+  const updateDist = (evt: SyntheticEvent, newDist: number) => {
     setDist(newDist);
 
     if (lock === LOCKS.TIME) setTime(calcTime(newDist, speed));
     if (lock === LOCKS.SPEED) setSpeed(calcSpeed(time, newDist));
   };
 
-  const updateSpeed = (evt: Event, newSpeed: number) => {
+  const updateSpeed = (evt: SyntheticEvent, newSpeed: number) => {
     setSpeed(newSpeed);
 
     if (lock === LOCKS.TIME) setTime(calcTime(dist, newSpeed));
