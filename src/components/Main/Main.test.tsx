@@ -12,7 +12,7 @@ describe("App renders", () => {
     render(<Main />);
 
     const sliders = await screen.findAllByRole("slider");
-    expect(sliders.length).toBe(3);
+    expect(sliders.length).toBe(2);
   });
 
   test("titles", async () => {
