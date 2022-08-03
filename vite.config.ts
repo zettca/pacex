@@ -10,6 +10,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   base: "./",
+  server: {
+    port: 3000,
+  },
   test: {
     globals: true,
     environment: "jsdom",
