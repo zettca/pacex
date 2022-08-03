@@ -33,8 +33,11 @@
     ]
   },
   "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.3",
+    "@mui/styles": "^5.9.3",
     "@testing-library/react": "^13.3.0",
     "i18next": "^21.8.16",
     "i18next-browser-languagedetector": "^6.1.0",

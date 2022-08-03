@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import {
-  Slider,
-  Typography,
-  SliderProps,
+  Fade,
+  FormControlLabel,
   Radio,
   RadioProps,
-  makeStyles,
-  FormControlLabel,
-  Fade,
-} from "@material-ui/core";
+  Slider,
+  SliderProps,
+  Typography,
+} from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import type { SliderConfig, SliderParams } from "~/types";
 import useSliderExpand from "~/hooks/useSliderExpand";
 
@@ -22,7 +22,9 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
   },
-  title: {},
+  title: {
+    color: theme.palette.text.secondary,
+  },
 }));
 
 export interface SliderPickerProps extends Omit<SliderProps, "onChange"> {
@@ -66,7 +68,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
     <section className={classes.root}>
       <div className={classes.titleContainer}>
         <FormControlLabel
-          control={<Radio color="primary" size="small" checked={locked} onClick={onLockClick} />}
+          control={<Radio size="small" checked={locked} onClick={onLockClick} />}
           label={
             <Typography
               color={locked ? "primary" : "initial"}
@@ -85,6 +87,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
           disabled={locked}
           aria-labelledby={id}
           {...sliderProps}
+          size="small"
           marks={marks}
           onChange={handleChange}
           {...others}

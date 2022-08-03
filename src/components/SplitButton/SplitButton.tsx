@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from "react";
-import { ArrowDropDown } from "@material-ui/icons";
-import { Button, Menu, MenuItem } from "@material-ui/core";
+import { ArrowDropDown } from "@mui/icons-material";
+import { Button, Menu, MenuItem } from "@mui/material";
 
 const SplitButton = ({ index = 0, options = [], onChange }) => {
   const [open, setOpen] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(index);
-  const ref = useRef(null);
+  const ref = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setSelectedIndex(index);
