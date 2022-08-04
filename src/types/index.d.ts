@@ -21,4 +21,10 @@ export type SliderConfig = {
 
 export type DistanceSetting = Record<"time" | "dist" | "speed", SliderConfig>;
 
-export type DISTANCES = "DEFAULT" | "ALL" | "SHORT" | "MEDIUM" | "LONG" | "ULTRA";
+export type DISTANCES =
+  | "DEFAULT"
+  | "ALL"
+  | "SHORT"
+  | "MEDIUM"
+  | "LONG"
+  | "ULTRA";

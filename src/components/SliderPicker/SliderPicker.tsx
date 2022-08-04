@@ -1,29 +1,22 @@
 import { useEffect } from "react";
 import {
+  Box,
   Fade,
   FormControlLabel,
   Radio,
   RadioProps,
   Slider,
   SliderProps,
+  styled,
   Typography,
 } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import type { SliderConfig, SliderParams } from "~/types";
 import useSliderExpand from "~/hooks/useSliderExpand";
 
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  mark: {
+const SliderX = styled(Slider)<SliderProps>(({ theme }) => ({
+  "& .MuiSlider-markLabel": {
     cursor: "pointer",
     color: theme.palette.primary.light,
-  },
-  titleContainer: {
-    display: "flex",
-    alignItems: "center",
-  },
-  title: {
-    color: theme.palette.text.secondary,
   },
 }));
 
@@ -47,7 +40,6 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
   value,
   ...others
 }) => {
-  const classes = useStyles();
   const [sliderProps, setValue] = useSliderExpand({ min, max, value });
 
   useEffect(() => {
@@ -65,25 +57,25 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
   ];
 
   return (
-    <section className={classes.root}>
-      <div className={classes.titleContainer}>
+    <section>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
         <FormControlLabel
-          control={<Radio size="small" checked={locked} onClick={onLockClick} />}
+          control={
+            <Radio size="small" checked={locked} onClick={onLockClick} />
+          }
           label={
             <Typography
-              color={locked ? "primary" : "initial"}
+              color={locked ? "primary" : "text.secondary"}
               component="h1"
               variant="h6"
-              className={classes.title}
             >
               {title}
             </Typography>
           }
         />
-      </div>
+      </Box>
       <Fade in={!locked} timeout={800}>
-        <Slider
-          classes={{ markLabel: classes.mark }}
+        <SliderX
           disabled={locked}
           aria-labelledby={id}
           {...sliderProps}

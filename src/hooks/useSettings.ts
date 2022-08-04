@@ -40,6 +40,7 @@ export const speeds: Mark[] = [
  * `dist` in meters
  * `speed` in meters/hour
  */
+// prettier-ignore
 export const SETTINGS: Record<DISTANCES, DistanceSetting> = {
   DEFAULT: {
     time: { min: 60, max: 3600, step: 20, buttons: times },
@@ -76,7 +77,9 @@ export const SETTINGS: Record<DISTANCES, DistanceSetting> = {
 export default function useSettings(
   initialState = "DEFAULT",
 ): [DistanceSetting, (distance: DISTANCES) => void] {
-  const [distSettings, setDistSettings] = useState<DistanceSetting>(SETTINGS[initialState]);
+  const [distSettings, setDistSettings] = useState<DistanceSetting>(
+    SETTINGS[initialState],
+  );
 
   const setDistance = useCallback((newDist: DISTANCES) => {
     setDistSettings(SETTINGS[newDist] ?? SETTINGS.DEFAULT);

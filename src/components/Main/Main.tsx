@@ -6,6 +6,8 @@ import useSettings from "~/hooks/useSettings";
 import SliderPicker from "../SliderPicker";
 import withLayout from "../withLayout";
 
+import "~/i18n";
+
 const Main = () => {
   const { t } = useTranslation();
   const [settings] = useSettings();

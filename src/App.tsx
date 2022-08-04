@@ -1,13 +1,11 @@
 import { lazy, Suspense, useMemo } from "react";
-import { CssBaseline, StyledEngineProvider, colors, useMediaQuery } from "@mui/material";
-import { createTheme, ThemeProvider, Theme } from "@mui/material/styles";
-
-import "./i18n";
-
-declare module "@mui/styles/defaultTheme" {
-  // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface DefaultTheme extends Theme {}
-}
+import {
+  CssBaseline,
+  StyledEngineProvider,
+  colors,
+  useMediaQuery,
+} from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Main = lazy(() => import("~/components/Main"));
 

@@ -1,41 +1,33 @@
 import React from "react";
-import { Card, CardContent, Container } from "@mui/material";
-
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    backgroundAttachment: "fixed",
-    backgroundSize: "cover",
-    minHeight: "100vh",
-    display: "flex",
-  },
-  card: {
-    padding: theme.spacing(3),
-    gap: theme.spacing(3),
-    display: "flex",
-    flexDirection: "column",
-  },
-}));
+import { Box, Card, CardContent, Container } from "@mui/material";
 
 const withLayout =
-  <P extends Record<string, unknown>>(Component: React.ComponentType<P>): React.FC<P> =>
+  <P extends Record<string, unknown>>(
+    Component: React.ComponentType<P>,
+  ): React.FC<P> =>
   (props: P) => {
-    const classes = useStyles();
     const num = Math.floor(Math.random() * 3);
 
     return (
-      <main className={classes.root} style={{ backgroundImage: `url(img/bg${num}.jpg)` }}>
+      <Box
+        component="main"
+        sx={{
+          display: "flex",
+          minHeight: "100vh",
+          background: `url(img/bg${num}.jpg) center no-repeat fixed`,
+          backgroundSize: "cover",
+        }}
+      >
         <Container style={{ margin: "auto", width: "100vw" }}>
           <Card>
-            <CardContent className={classes.card}>
+            <CardContent
+              sx={{ display: "flex", flexDirection: "column", gap: 3, p: 3 }}
+            >
               <Component {...props} />
             </CardContent>
           </Card>
         </Container>
-      </main>
+      </Box>
     );
   };
 
