@@ -1,3 +1,6 @@
+const getLabel = (num) =>
+  cy.get(`section:nth-child(${num}) .MuiSlider-markLabel`);
+
 describe("Slider mark clicking", () => {
   describe("Time", () => {
     beforeEach(() => {
@@ -5,17 +8,17 @@ describe("Slider mark clicking", () => {
     });
 
     it("12min", () => {
-      cy.get("section:nth-child(1) .MuiSlider-markLabel").contains("12'").click();
+      getLabel(1).contains("12'").click();
       cy.get("section:nth-child(1) h1").contains("Time 00:12:00");
     });
 
     it("30min", () => {
-      cy.get("section:nth-child(1) .MuiSlider-markLabel").contains("30'").click();
+      getLabel(1).contains("30'").click();
       cy.get("section:nth-child(1) h1").contains("Time 00:30:00");
     });
 
     it("Max (+)", () => {
-      cy.get("section:nth-child(1) .MuiSlider-markLabel").contains("+").click();
+      getLabel(1).contains("+").click();
       cy.get("section:nth-child(1) h1").contains("Time 01:00:00");
     });
   });
@@ -26,17 +29,17 @@ describe("Slider mark clicking", () => {
     });
 
     it("Mile", () => {
-      cy.get("section:nth-child(2) .MuiSlider-markLabel").contains("1 mi").click();
+      getLabel(2).contains("1 mi").click();
       cy.get("section:nth-child(2) h1").contains("Distance 1.6km");
     });
 
     it("5K", () => {
-      cy.get("section:nth-child(2) .MuiSlider-markLabel").contains("5K").click();
+      getLabel(2).contains("5K").click();
       cy.get("section:nth-child(2) h1").contains("Distance 5.0km");
     });
 
     it("Max (+)", () => {
-      cy.get("section:nth-child(2) .MuiSlider-markLabel").contains("+").click();
+      getLabel(2).contains("+").click();
       cy.get("section:nth-child(2) h1").contains("Distance 10.0km");
     });
   });
@@ -48,28 +51,29 @@ describe("Slider mark clicking", () => {
     });
 
     it("Walk 10:00/km", () => {
-      cy.get("section:nth-child(3) .MuiSlider-markLabel").contains("🚶").click();
+      getLabel(3).contains("🚶").click();
       cy.get("section:nth-child(3) h1").contains("Pace 10:00/km");
     });
 
     it("Run 05:00/km", () => {
-      cy.get("section:nth-child(3) .MuiSlider-markLabel").contains("🏃").click();
+      getLabel(3).contains("🏃").click();
       cy.get("section:nth-child(3) h1").contains("Pace 05:00/km");
     });
 
     it("Run fast 04:00/km", () => {
-      cy.get("section:nth-child(3) .MuiSlider-markLabel").contains("🏃💨").click();
+      getLabel(3).contains("🏃💨").click();
       cy.get("section:nth-child(3) h1").contains("Pace 04:00/km");
     });
 
     it("Max (+) Pace 03:45/km", () => {
-      cy.get("section:nth-child(3) .MuiSlider-markLabel").contains("+").click();
+      getLabel(3).contains("+").click();
       cy.get("section:nth-child(3) h1").contains("Pace 03:45/km");
     });
   });
 });
 
 describe("Slider growing", () => {
+  /*
   describe("Time", () => {
     beforeEach(() => {
       cy.visit("/");
@@ -148,4 +152,5 @@ describe("Slider growing", () => {
       cy.get(slider).should("have.attr", "aria-valuemax").and("eq", "16000");
     });
   });
+  */
 });

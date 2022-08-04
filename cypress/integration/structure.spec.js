@@ -17,11 +17,7 @@ describe("Primary DOM elements", () => {
     cy.get("section h1").contains("Pace");
   });
 
-  it("Contains 3 inputs", () => {
-    cy.get("input[type=hidden]");
-  });
-
   it("Contains 3 sliders", () => {
-    cy.get("span[role=slider]");
+    cy.get("input[type=range]");
   });
 });
