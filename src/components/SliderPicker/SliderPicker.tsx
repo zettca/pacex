@@ -29,7 +29,6 @@ export interface SliderPickerProps extends Omit<SliderProps, "onChange"> {
 }
 
 const SliderPicker: React.FC<SliderPickerProps> = ({
-  id,
   title,
   locked = false,
   buttons = [],
@@ -77,7 +76,6 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
       <Fade in={!locked} timeout={800}>
         <SliderX
           disabled={locked}
-          aria-labelledby={id}
           {...sliderProps}
           size="small"
           marks={marks}

@@ -9,7 +9,7 @@ import withLayout from "../withLayout";
 import "~/i18n";
 
 const Main = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("", { keyPrefix: "components.main" });
   const [settings] = useSettings();
   const { time, dist, speed, lock, setLock, update } = useCalc({
     time: 1800,
@@ -23,8 +23,8 @@ const Main = () => {
   return (
     <>
       <SliderPicker
-        id="time"
-        title={`${t("components.main.time")} ${timeF}`}
+        aria-label={t`time`}
+        title={`${t("time")} ${timeF}`}
         locked={lock === LOCKS.TIME}
         onChange={update.time}
         onLockClick={() => setLock(LOCKS.TIME)}
@@ -32,8 +32,8 @@ const Main = () => {
         value={time}
       />
       <SliderPicker
-        id="dist"
-        title={`${t("components.main.distance")} ${distF}km`}
+        aria-label={t`distance`}
+        title={`${t("distance")} ${distF}km`}
         locked={lock === LOCKS.DIST}
         onChange={update.dist}
         onLockClick={() => setLock(LOCKS.DIST)}
@@ -41,8 +41,8 @@ const Main = () => {
         value={dist}
       />
       <SliderPicker
-        id="pace"
-        title={`${t("components.main.pace")} ${minKm}/km (${kmHr}km/h)`}
+        aria-label={t`pace`}
+        title={`${t("pace")} ${minKm}/km (${kmHr}km/h)`}
         locked={lock === LOCKS.SPEED}
         onChange={update.speed}
         onLockClick={() => setLock(LOCKS.SPEED)}
