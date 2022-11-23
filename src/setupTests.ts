@@ -6,7 +6,8 @@ import "@testing-library/jest-dom";
 import { vi } from "vitest";
 
 vi.mock("react-i18next", async () => {
-  const { initReactI18next } = await vi.importActual("react-i18next");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const { initReactI18next } = await vi.importActual<any>("react-i18next");
 
   return {
     initReactI18next,
