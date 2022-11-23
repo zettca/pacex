@@ -23,7 +23,7 @@ const Main = () => {
   return (
     <>
       <SliderPicker
-        aria-label={t`time`}
+        aria-label={t("time")}
         title={`${t("time")} ${timeF}`}
         locked={lock === LOCKS.TIME}
         onChange={update.time}
@@ -32,7 +32,7 @@ const Main = () => {
         value={time}
       />
       <SliderPicker
-        aria-label={t`distance`}
+        aria-label={t("distance")}
         title={`${t("distance")} ${distF}km`}
         locked={lock === LOCKS.DIST}
         onChange={update.dist}
@@ -41,7 +41,7 @@ const Main = () => {
         value={dist}
       />
       <SliderPicker
-        aria-label={t`pace`}
+        aria-label={t("pace")}
         title={`${t("pace")} ${minKm}/km (${kmHr}km/h)`}
         locked={lock === LOCKS.SPEED}
         onChange={update.speed}

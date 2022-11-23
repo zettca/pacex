@@ -8,12 +8,7 @@
     "import/no-extraneous-dependencies": [
       "error",
       {
-        "devDependencies": [
-          "**/*.test.{ts,tsx}",
-          "tests/**",
-          "playwright.config.ts",
-          "src/setupTests.ts"
-        ]
+        "devDependencies": ["**/*.test.{ts,tsx}", "/*.ts", "src/setupTests.ts"]
       }
     ],
 
