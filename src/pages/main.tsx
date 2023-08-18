@@ -7,9 +7,7 @@ import SliderPicker from "../components/SliderPicker";
 
 import "~/i18n";
 
-export const loader = () => {
-  return null;
-};
+export const loader = () => null;
 
 export const Component = () => {
   const { t } = useTranslation("", { keyPrefix: "components.main" });
