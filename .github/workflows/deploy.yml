@@ -28,11 +28,10 @@ jobs:
 
       - uses: actions/setup-node@v3
 
-      - name: Install
-        run: npm ci
+      - run: npm ci
 
-      - name: Lint
-        run: npm run lint
+      - name: Static checks
+        run: npm run check
 
       - name: Test
         run: npm run test
@@ -53,8 +52,7 @@ jobs:
 
       - uses: actions/setup-node@v3
 
-      - name: Install
-        run: npm ci
+      - run: npm ci
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps

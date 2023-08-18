@@ -14,9 +14,10 @@
     "build": "tsc && vite build",
     "test": "vitest",
     "cypress": "npx cypress run",
-    "lint": "run-p lint:*",
-    "lint:eslint": "npx eslint src --color --cache",
-    "lint:prettier": "npx prettier --check 'src/**/*.{html,css,ts,tsx}'",
+    "check": "run-p lint fmt typecheck",
+    "lint": "npx eslint src --color --cache",
+    "fmt": "npx prettier --check 'src/**/*.{html,css,ts,tsx}'",
+    "typecheck": "tsc --noEmit",
     "predeploy": "npm run build && npm run test",
     "deploy": "gh-pages -d dist"
   },
