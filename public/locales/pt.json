@@ -1,21 +1,21 @@
 {
-    "distances": {
-        "mile": "Milha",
-        "halfMarathon": "½ Maratona",
-        "marathon": "Maratona"
-    },
-    "speeds": {
-        "walk": "Andar",
-        "jog": "Jog",
-        "run": "Correr",
-        "fastRun": "Rápido"
-    },
-    "components": {
-        "main": {
-            "time": "Tempo",
-            "distance": "Distância",
-            "speed": "Velocidade",
-            "pace": "Ritmo"
-        }
+  "distances": {
+    "mile": "Milha",
+    "halfMarathon": "½ Maratona",
+    "marathon": "Maratona"
+  },
+  "speeds": {
+    "walk": "Andar",
+    "jog": "Jog",
+    "run": "Correr",
+    "fastRun": "Rápido"
+  },
+  "components": {
+    "main": {
+      "time": "Tempo",
+      "distance": "Distância",
+      "speed": "Velocidade",
+      "pace": "Ritmo"
     }
+  }
 }
