@@ -11,26 +11,24 @@ export const Component = () => {
   const { bgUrl } = useLoaderData() as ReturnType<typeof loader>;
 
   return (
-    <>
-      <Box
-        component="main"
-        sx={{
-          display: "flex",
-          minHeight: "100dvh",
-          background: `url(${bgUrl}) center no-repeat fixed`,
-          backgroundSize: "cover",
-        }}
-      >
-        <Container style={{ margin: "auto", width: "100vw" }}>
-          <Card>
-            <CardContent
-              sx={{ display: "flex", flexDirection: "column", gap: 3, p: 3 }}
-            >
-              <Outlet />
-            </CardContent>
-          </Card>
-        </Container>
-      </Box>
-    </>
+    <Box
+      component="main"
+      sx={{
+        display: "flex",
+        minHeight: "100dvh",
+        background: `url(${bgUrl}) center no-repeat fixed`,
+        backgroundSize: "cover",
+      }}
+    >
+      <Container sx={{ margin: "auto", width: "100vw" }}>
+        <Card>
+          <CardContent
+            sx={{ display: "flex", flexDirection: "column", gap: 2, p: 3 }}
+          >
+            <Outlet />
+          </CardContent>
+        </Card>
+      </Container>
+    </Box>
   );
 };
