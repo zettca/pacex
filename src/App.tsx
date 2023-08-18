@@ -8,12 +8,15 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    lazy: () => import("./pages/layout"),
-    children: [{ path: "/", lazy: () => import("./pages/main") }],
-  },
-]);
+const router = createBrowserRouter(
+  [
+    {
+      lazy: () => import("./pages/layout"),
+      children: [{ path: "/", lazy: () => import("./pages/main") }],
+    },
+  ],
+  { basename: "/" },
+);
 
 const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
