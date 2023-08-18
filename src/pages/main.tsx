@@ -3,12 +3,15 @@ import { useTranslation } from "react-i18next";
 import { format } from "~/utils/formats";
 import useCalc, { LOCKS } from "~/hooks/useCalc";
 import useSettings from "~/hooks/useSettings";
-import SliderPicker from "../SliderPicker";
-import withLayout from "../withLayout";
+import SliderPicker from "../components/SliderPicker";
 
 import "~/i18n";
 
-const Main = () => {
+export const loader = () => {
+  return null;
+};
+
+export const Component = () => {
   const { t } = useTranslation("", { keyPrefix: "components.main" });
   const [settings] = useSettings();
   const { time, dist, speed, lock, setLock, update } = useCalc({
@@ -52,5 +55,3 @@ const Main = () => {
     </>
   );
 };
-
-export default withLayout(Main);

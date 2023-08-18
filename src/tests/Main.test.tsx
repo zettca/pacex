@@ -1,13 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import Main from ".";
+import { Component as Main } from "../pages/main";
 
 describe("App renders", () => {
-  test("main", () => {
-    render(<Main />);
-    const main = screen.getByRole("main");
-    expect(main).toBeInTheDocument();
-  });
-
   test("sliders", async () => {
     render(<Main />);
 

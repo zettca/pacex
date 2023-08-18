@@ -1,20 +1,23 @@
-import React from "react";
 import { Box, Card, CardContent, Container } from "@mui/material";
+import { Outlet, useLoaderData } from "react-router-dom";
 
-const withLayout =
-  <P extends Record<string, unknown>>(
-    Component: React.ComponentType<P>,
-  ): React.FC<P> =>
-  (props: P) => {
-    const num = Math.floor(Math.random() * 3);
+export const loader = () => {
+  const num = Math.floor(Math.random() * 3);
 
-    return (
+  return { bgUrl: `img/bg${num}.jpg` };
+};
+
+export const Component = () => {
+  const { bgUrl } = useLoaderData() as ReturnType<typeof loader>;
+
+  return (
+    <>
       <Box
         component="main"
         sx={{
           display: "flex",
           minHeight: "100dvh",
-          background: `url(img/bg${num}.jpg) center no-repeat fixed`,
+          background: `url(${bgUrl}) center no-repeat fixed`,
           backgroundSize: "cover",
         }}
       >
@@ -23,12 +26,11 @@ const withLayout =
             <CardContent
               sx={{ display: "flex", flexDirection: "column", gap: 3, p: 3 }}
             >
-              <Component {...props} />
+              <Outlet />
             </CardContent>
           </Card>
         </Container>
       </Box>
-    );
-  };
-
-export default withLayout;
+    </>
+  );
+};

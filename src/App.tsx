@@ -1,4 +1,4 @@
-import { lazy, Suspense, useMemo } from "react";
+import { Suspense, useMemo } from "react";
 import {
   CssBaseline,
   StyledEngineProvider,
@@ -6,8 +6,14 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-const Main = lazy(() => import("~/components/Main"));
+const router = createBrowserRouter([
+  {
+    lazy: () => import("./pages/layout"),
+    children: [{ path: "/", lazy: () => import("./pages/main") }],
+  },
+]);
 
 const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -28,7 +34,7 @@ const App = () => {
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Main />
+          <RouterProvider router={router} />
         </ThemeProvider>
       </StyledEngineProvider>
     </Suspense>
