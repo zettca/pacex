@@ -8,6 +8,8 @@ import {
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+console.log(import.meta.env.BASE_URL);
+
 const router = createBrowserRouter(
   [
     {
@@ -15,7 +17,7 @@ const router = createBrowserRouter(
       children: [{ path: "/", lazy: () => import("./pages/main") }],
     },
   ],
-  { basename: "/" },
+  { basename: import.meta.env.BASE_URL },
 );
 
 const App = () => {
