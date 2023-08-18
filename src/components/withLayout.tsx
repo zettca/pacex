@@ -13,7 +13,7 @@ const withLayout =
         component="main"
         sx={{
           display: "flex",
-          minHeight: "100vh",
+          minHeight: "100dvh",
           background: `url(img/bg${num}.jpg) center no-repeat fixed`,
           backgroundSize: "cover",
         }}
