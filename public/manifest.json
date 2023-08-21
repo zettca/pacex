@@ -1,12 +1,21 @@
 {
   "short_name": "PaceX",
-  "name": "PaceX Pace Calculator",
+  "name": "PaceX Calculator",
   "description": "PaceX: Pace calculator for runners!",
   "developer": {
     "name": "Bruno Henriques",
     "url": "https://github.com/zettca/pacex"
   },
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#424242",
+  "background_color": "#eeeeee",
   "icons": [
+    {
+      "src": "img/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    },
     {
       "src": "favicon.ico",
       "sizes": "128x128 64x64 32x32 24x24 16x16",
@@ -28,8 +37,5 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#424242",
-  "background_color": "#eeeeee"
+  "shortcuts": []
 }
