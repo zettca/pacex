@@ -12,10 +12,10 @@
   },
   "components": {
     "main": {
-      "time": "Time",
-      "distance": "Distance",
-      "speed": "Speed",
-      "pace": "Pace"
+      "time": "Time {{value}}",
+      "distance": "Distance {{value}}km",
+      "speed": "Speed {{minKm}}/km ({{kmHr}}km/h)",
+      "pace": "Pace {{minKm}}/km ({{kmHr}}km/h)"
     }
   }
 }

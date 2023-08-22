@@ -12,10 +12,10 @@
   },
   "components": {
     "main": {
-      "time": "Tempo",
-      "distance": "Distância",
-      "speed": "Velocidade",
-      "pace": "Ritmo"
+      "time": "Tempo {{value}}",
+      "distance": "Distância {{value}}km",
+      "speed": "Velocidade {{minKm}}/km ({{kmHr}}km/h)",
+      "pace": "Ritmo {{minKm}}/km ({{kmHr}}km/h)"
     }
   }
 }

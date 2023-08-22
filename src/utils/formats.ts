@@ -19,9 +19,3 @@ export const formatSpeed = (speed: number) => {
 
   return { kmHr, minKm };
 };
-
-export const format = {
-  time: formatTime,
-  dist: formatDist,
-  speed: formatSpeed,
-};
