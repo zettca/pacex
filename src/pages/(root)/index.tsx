@@ -5,12 +5,12 @@ import useCalc, { LOCKS } from "~/hooks/useCalc";
 import useSettings from "~/hooks/useSettings";
 import SliderPicker from "~/components/SliderPicker";
 
-import "~/i18n";
+import "~/i18n/config";
 
 export const loader = () => null;
 
 export const Component = () => {
-  const { t } = useTranslation("", { keyPrefix: "components.main" });
+  const { t } = useTranslation(undefined, { keyPrefix: "components.main" });
   const [settings] = useSettings();
   const { time, dist, speed, lock, setLock, update } = useCalc({
     time: 1800,
