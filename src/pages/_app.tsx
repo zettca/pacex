@@ -2,10 +2,11 @@ import { Suspense, useMemo } from "react";
 import {
   CssBaseline,
   StyledEngineProvider,
+  ThemeProvider,
   colors,
+  createTheme,
   useMediaQuery,
 } from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Outlet } from "react-router-dom";
 
 const App = () => {

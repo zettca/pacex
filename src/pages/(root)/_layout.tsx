@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Container } from "@mui/material";
+import { Box, Card, Container } from "@mui/material";
 import { Outlet, useLoaderData } from "react-router-dom";
 
 export const loader = () => {
@@ -22,11 +22,7 @@ export const Component = () => {
     >
       <Container sx={{ margin: "auto", width: "100vw" }}>
         <Card>
-          <CardContent
-            sx={{ display: "flex", flexDirection: "column", gap: 2, p: 3 }}
-          >
-            <Outlet />
-          </CardContent>
+          <Outlet />
         </Card>
       </Container>
     </Box>

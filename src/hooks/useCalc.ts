@@ -1,10 +1,5 @@
 import { SyntheticEvent, useEffect, useState } from "react";
-
-export enum LOCKS {
-  TIME,
-  DIST,
-  SPEED,
-}
+import { Unit } from "~/types";
 
 const HOUR = 60 * 60;
 export const calcTime = (dist: number, speed: number) => (dist / speed) * HOUR; // seconds
@@ -16,20 +11,25 @@ export default function useCalc({
   time: initialTime = 0,
   dist: initialDist = 0,
   speed: initialSpeed = 0,
-  lock: initialLock = LOCKS.SPEED,
+  lock: initialLock = "speed",
+}: {
+  time?: number;
+  dist?: number;
+  speed?: number;
+  lock?: Unit;
 }) {
-  const [time, setTime] = useState<number>(initialTime);
-  const [dist, setDist] = useState<number>(initialDist);
-  const [speed, setSpeed] = useState<number>(initialSpeed);
-  const [lock, setLock] = useState<LOCKS>(initialLock);
+  const [time, setTime] = useState(initialTime);
+  const [dist, setDist] = useState(initialDist);
+  const [speed, setSpeed] = useState(initialSpeed);
+  const [lock, setLock] = useState(initialLock);
 
   useEffect(() => {
     switch (initialLock) {
-      case LOCKS.TIME:
+      case "time":
         return setTime(calcTime(initialDist, initialSpeed));
-      case LOCKS.DIST:
+      case "dist":
         return setDist(calcDist(initialTime, initialSpeed));
-      case LOCKS.SPEED:
+      case "speed":
       default:
         return setSpeed(calcSpeed(initialTime, initialDist));
     }
@@ -38,22 +38,22 @@ export default function useCalc({
   const updateTime = (evt: SyntheticEvent, newTime: number) => {
     setTime(newTime);
 
-    if (lock === LOCKS.DIST) setDist(calcDist(newTime, speed));
-    if (lock === LOCKS.SPEED) setSpeed(calcSpeed(newTime, dist));
+    if (lock === "dist") setDist(calcDist(newTime, speed));
+    if (lock === "speed") setSpeed(calcSpeed(newTime, dist));
   };
 
   const updateDist = (evt: SyntheticEvent, newDist: number) => {
     setDist(newDist);
 
-    if (lock === LOCKS.TIME) setTime(calcTime(newDist, speed));
-    if (lock === LOCKS.SPEED) setSpeed(calcSpeed(time, newDist));
+    if (lock === "time") setTime(calcTime(newDist, speed));
+    if (lock === "speed") setSpeed(calcSpeed(time, newDist));
   };
 
   const updateSpeed = (evt: SyntheticEvent, newSpeed: number) => {
     setSpeed(newSpeed);
 
-    if (lock === LOCKS.TIME) setTime(calcTime(dist, newSpeed));
-    if (lock === LOCKS.DIST) setDist(calcDist(time, newSpeed));
+    if (lock === "time") setTime(calcTime(dist, newSpeed));
+    if (lock === "dist") setDist(calcDist(time, newSpeed));
   };
 
   const update = {

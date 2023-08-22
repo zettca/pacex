@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
+import { CardContent } from "@mui/material";
+
 import { format } from "~/utils/formats";
-import useCalc, { LOCKS } from "~/hooks/useCalc";
+import useCalc from "~/hooks/useCalc";
 import useSettings from "~/hooks/useSettings";
 import SliderPicker from "~/components/SliderPicker";
 
@@ -22,34 +24,33 @@ export const Component = () => {
   const { minKm, kmHr } = useMemo(() => format.speed(speed), [speed]);
 
   return (
-    <>
+    <CardContent
+      sx={{ display: "flex", flexDirection: "column", gap: 2, p: 3 }}
+    >
       <SliderPicker
-        aria-label={t("time")}
         title={`${t("time")} ${timeF}`}
-        locked={lock === LOCKS.TIME}
+        selected={lock === "time"}
         onChange={update.time}
-        onLockClick={() => setLock(LOCKS.TIME)}
+        onLockClick={() => setLock("time")}
         {...settings.time}
         value={time}
       />
       <SliderPicker
-        aria-label={t("distance")}
         title={`${t("distance")} ${distF}km`}
-        locked={lock === LOCKS.DIST}
+        selected={lock === "dist"}
         onChange={update.dist}
-        onLockClick={() => setLock(LOCKS.DIST)}
+        onLockClick={() => setLock("dist")}
         {...settings.dist}
         value={dist}
       />
       <SliderPicker
-        aria-label={t("pace")}
         title={`${t("pace")} ${minKm}/km (${kmHr}km/h)`}
-        locked={lock === LOCKS.SPEED}
+        selected={lock === "speed"}
         onChange={update.speed}
-        onLockClick={() => setLock(LOCKS.SPEED)}
+        onLockClick={() => setLock("speed")}
         {...settings.speed}
         value={speed}
       />
-    </>
+    </CardContent>
   );
 };

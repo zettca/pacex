@@ -1,7 +1,11 @@
 import { useCallback, useState } from "react";
-import { DISTANCES, DistanceSetting, Mark } from "~/types";
+import { Mark, SliderConfig, Unit } from "~/types";
 
-export const times: Mark[] = [
+type DistanceSetting = Record<Unit, SliderConfig>;
+
+type Distances = keyof typeof SETTINGS;
+
+const times: Mark[] = [
   { label: "12'", value: 12 * 60 },
   { label: "30'", value: 30 * 60 },
   { label: "1h", value: 1 * 3600 },
@@ -14,7 +18,7 @@ export const times: Mark[] = [
   { label: "24h", value: 24 * 3600 },
 ];
 
-export const distances: Mark[] = [
+const distances: Mark[] = [
   { label: "1 mi", value: 1610 },
   { label: "5K", value: 5000 },
   { label: "10K", value: 10000 },
@@ -26,7 +30,7 @@ export const distances: Mark[] = [
   { label: "100 Mi", value: 160934 },
 ];
 
-export const speeds: Mark[] = [
+const speeds: Mark[] = [
   { label: "🚶", value: 6000 },
   { label: "🚶💨", value: 8000 },
   { label: "🏃", value: 12000 },
@@ -41,7 +45,7 @@ export const speeds: Mark[] = [
  * `speed` in meters/hour
  */
 // prettier-ignore
-export const SETTINGS: Record<DISTANCES, DistanceSetting> = {
+const SETTINGS = {
   DEFAULT: {
     time: { min: 60, max: 3600, step: 20, buttons: times },
     dist: { min: 1000, max: 10000, step: 100, buttons: distances },
@@ -72,18 +76,16 @@ export const SETTINGS: Record<DISTANCES, DistanceSetting> = {
     dist: { min: 100, max: 50000, step: 100, buttons: distances },
     speed: { min: 6000, max: 24000, step: 100, buttons: speeds },
   },
-};
+} satisfies Record<string, DistanceSetting>;
 
-export default function useSettings(
-  initialState = "DEFAULT",
-): [DistanceSetting, (distance: DISTANCES) => void] {
+export default function useSettings(initialState: Distances = "DEFAULT") {
   const [distSettings, setDistSettings] = useState<DistanceSetting>(
     SETTINGS[initialState],
   );
 
-  const setDistance = useCallback((newDist: DISTANCES) => {
+  const setDistance = useCallback((newDist: Distances) => {
     setDistSettings(SETTINGS[newDist] ?? SETTINGS.DEFAULT);
   }, []);
 
-  return [distSettings, setDistance];
+  return [distSettings, setDistance] as const;
 }

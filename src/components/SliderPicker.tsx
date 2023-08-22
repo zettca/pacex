@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useId } from "react";
 import {
   Box,
   Fade,
@@ -21,7 +21,7 @@ const SliderX = styled(Slider)<SliderProps>(({ theme }) => ({
 }));
 
 export interface SliderPickerProps extends Omit<SliderProps, "onChange"> {
-  locked: boolean;
+  selected: boolean;
   buttons?: SliderConfig["buttons"];
   value: number;
   onChange?: SliderParams["onChange"];
@@ -30,7 +30,7 @@ export interface SliderPickerProps extends Omit<SliderProps, "onChange"> {
 
 const SliderPicker: React.FC<SliderPickerProps> = ({
   title,
-  locked = false,
+  selected = false,
   buttons = [],
   onChange,
   onLockClick,
@@ -39,6 +39,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
   value,
   ...others
 }) => {
+  const id = useId();
   const [sliderProps, setValue] = useSliderExpand({ min, max, value });
 
   useEffect(() => {
@@ -60,11 +61,12 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <FormControlLabel
           control={
-            <Radio size="small" checked={locked} onClick={onLockClick} />
+            <Radio size="small" checked={selected} onClick={onLockClick} />
           }
           label={
             <Typography
-              color={locked ? "primary" : "text.secondary"}
+              id={id}
+              color={selected ? "primary" : "text.secondary"}
               component="h1"
               variant="h6"
             >
@@ -73,10 +75,11 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
           }
         />
       </Box>
-      <Fade in={!locked} timeout={800}>
+      <Fade in={!selected} timeout={800}>
         <SliderX
-          disabled={locked}
+          disabled={selected}
           {...sliderProps}
+          aria-labelledby={id}
           size="small"
           marks={marks}
           onChange={handleChange}
