@@ -1,14 +1,10 @@
+import { Outlet } from "react-router-dom";
 import { Box, Card, Container } from "@mui/material";
-import { Outlet, useLoaderData } from "react-router-dom";
-
-export const loader = () => {
-  const num = Math.floor(Math.random() * 3);
-
-  return { bgUrl: `img/bg${num}.jpg` };
-};
+import { useIntervalValue } from "~/hooks/useIntervalValue";
+import { random } from "~/utils";
 
 export const Component = () => {
-  const { bgUrl } = useLoaderData() as ReturnType<typeof loader>;
+  const bgNum = useIntervalValue(() => random(3), 20_000, 0);
 
   return (
     <Box
@@ -16,7 +12,7 @@ export const Component = () => {
       sx={{
         display: "flex",
         minHeight: "100dvh",
-        background: `url(${bgUrl}) center no-repeat fixed`,
+        background: `url(img/bg${bgNum}.jpg) center no-repeat fixed`,
         backgroundSize: "cover",
       }}
     >
