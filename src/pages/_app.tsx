@@ -9,17 +9,21 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Outlet } from "react-router-dom";
 
 const App = () => {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const prefersLightMode = useMediaQuery("(prefers-color-scheme: light)");
+  const mode = useMemo(
+    () => (prefersLightMode ? "light" : "dark"),
+    [prefersLightMode],
+  );
 
   const theme = useMemo(
     () =>
       createTheme({
         palette: {
-          mode: prefersDarkMode ? "dark" : "light",
-          primary: { main: colors.orange[400] || colors.teal[400] },
+          mode,
+          primary: { main: colors.orange[400] },
         },
       }),
-    [prefersDarkMode],
+    [mode],
   );
 
   return (
