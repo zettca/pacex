@@ -6,17 +6,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
-const router = createBrowserRouter(
-  [
-    {
-      lazy: () => import("./pages/layout"),
-      children: [{ path: "/", lazy: () => import("./pages/main") }],
-    },
-  ],
-  { basename: import.meta.env.DEV ? import.meta.env.BASE_URL : "/pacex/" },
-);
+import { Outlet } from "react-router-dom";
 
 const App = () => {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -37,7 +27,7 @@ const App = () => {
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <RouterProvider router={router} />
+          <Outlet />
         </ThemeProvider>
       </StyledEngineProvider>
     </Suspense>

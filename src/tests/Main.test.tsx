@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Component as Main } from "../pages/main";
+import { Component as Main } from "~/pages/(root)";
 
 describe("App renders", () => {
   test("sliders", async () => {

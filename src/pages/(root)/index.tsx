@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { format } from "~/utils/formats";
 import useCalc, { LOCKS } from "~/hooks/useCalc";
 import useSettings from "~/hooks/useSettings";
-import SliderPicker from "../components/SliderPicker";
+import SliderPicker from "~/components/SliderPicker";
 
 import "~/i18n";
 
