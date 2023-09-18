@@ -9,8 +9,8 @@ import { devices, PlaywrightTestConfig } from "@playwright/test";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-const config: PlaywrightTestConfig = {
-  testDir: "./tests",
+export default {
+  testDir: "./e2e",
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
   expect: {
@@ -57,6 +57,4 @@ const config: PlaywrightTestConfig = {
     command: "npm start",
     url: "http://localhost:3000",
   },
-};
-
-export default config;
+} satisfies PlaywrightTestConfig;
