@@ -28,16 +28,20 @@ jobs:
 
       - uses: actions/setup-node@v3
 
-      - run: npm ci
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-      - name: Static checks
-        run: npm run check
+      - run: pnpm i
+
+      - name: Check
+        run: pnpm check
 
       - name: Test
-        run: npm run test
+        run: pnpm test
 
       - name: Build
-        run: npm run build -- --base=/pacex/
+        run: pnpm build -- --base=/pacex/
 
       - uses: actions/upload-pages-artifact@v1.0.5
         with:
@@ -52,13 +56,17 @@ jobs:
 
       - uses: actions/setup-node@v3
 
-      - run: npm ci
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - run: pnpm i
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: pnpm playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: pnpm playwright test
 
   Publish:
     runs-on: ubuntu-latest
