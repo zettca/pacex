@@ -41,7 +41,7 @@ jobs:
         run: pnpm test
 
       - name: Build
-        run: pnpm build -- --base=/pacex/
+        run: pnpm build --base=/pacex/
 
       - uses: actions/upload-pages-artifact@v1.0.5
         with:
