@@ -7,11 +7,6 @@ on:
   pull_request:
     branches: [master]
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -24,13 +19,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - uses: pnpm/action-setup@v4
 
       - run: pnpm i
 
@@ -43,7 +36,7 @@ jobs:
       - name: Build
         run: pnpm build --base=/pacex/
 
-      - uses: actions/upload-pages-artifact@v1.0.5
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/
           retention-days: 1
@@ -52,13 +45,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - uses: pnpm/action-setup@v4
 
       - run: pnpm i
 
@@ -72,6 +63,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [Build, E2E]
 
+    permissions:
+      pages: write
+      id-token: write
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -79,4 +74,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1.2.3
+        uses: actions/deploy-pages@v3
