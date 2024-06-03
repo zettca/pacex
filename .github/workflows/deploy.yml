@@ -27,11 +27,9 @@ jobs:
 
       - run: pnpm i
 
-      - name: Check
-        run: pnpm check
+      - run: pnpm check
 
-      - name: Test
-        run: pnpm test
+      - run: pnpm test
 
       - name: Build
         run: pnpm build --base=/pacex/
@@ -75,4 +73,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
