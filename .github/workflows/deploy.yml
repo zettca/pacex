@@ -64,6 +64,7 @@ jobs:
     needs: [Build, E2E]
 
     permissions:
+      contents: read
       pages: write
       id-token: write
 
