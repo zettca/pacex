@@ -10,8 +10,8 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import type { SliderConfig, SliderParams } from "~/types";
 import useSliderExpand from "~/hooks/useSliderExpand";
+import type { SliderConfig, SliderParams } from "~/types";
 
 const SliderX = styled(Slider)<SliderProps>(({ theme }) => ({
   "& .MuiSlider-markLabel": {

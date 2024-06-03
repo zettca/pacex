@@ -1,13 +1,11 @@
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { CardContent } from "@mui/material";
-
-import { formatDist, formatSpeed, formatTime } from "~/utils/formats";
+import SliderPicker from "~/components/SliderPicker";
 import useCalc from "~/hooks/useCalc";
 import useSettings from "~/hooks/useSettings";
-import SliderPicker from "~/components/SliderPicker";
 import { Unit } from "~/types";
-
+import { formatDist, formatSpeed, formatTime } from "~/utils/formats";
 import "~/i18n/config";
 
 export const loader = () => null;

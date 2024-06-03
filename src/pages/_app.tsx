@@ -1,13 +1,13 @@
 import { Suspense, useMemo } from "react";
+import { Outlet } from "react-router-dom";
 import {
+  colors,
+  createTheme,
   CssBaseline,
   StyledEngineProvider,
   ThemeProvider,
-  colors,
-  createTheme,
   useMediaQuery,
 } from "@mui/material";
-import { Outlet } from "react-router-dom";
 
 const App = () => {
   const prefersLightMode = useMediaQuery("(prefers-color-scheme: light)");

@@ -8,8 +8,8 @@ import {
 } from "react-router-dom";
 import type {
   ActionFunction,
-  RouteObject,
   LoaderFunction,
+  RouteObject,
 } from "react-router-dom";
 import {
   generateModalRoutes,
