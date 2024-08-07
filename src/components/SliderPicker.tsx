@@ -4,11 +4,11 @@ import {
   Fade,
   FormControlLabel,
   Radio,
-  RadioProps,
   Slider,
-  SliderProps,
   styled,
   Typography,
+  type RadioProps,
+  type SliderProps,
 } from "@mui/material";
 import useSliderExpand from "~/hooks/useSliderExpand";
 import type { SliderConfig, SliderParams } from "~/types";
@@ -46,11 +46,6 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
     setValue(value);
   }, [value, setValue]);
 
-  const handleChange = (evt, val) => {
-    sliderProps.onChange(evt, val);
-    onChange?.(evt, val);
-  };
-
   const marks = [
     ...buttons.filter((btn) => btn.value < sliderProps.max),
     { value: sliderProps.max, label: "+" },
@@ -82,7 +77,10 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
           aria-labelledby={id}
           size="small"
           marks={marks}
-          onChange={handleChange}
+          onChange={(evt, val) => {
+            sliderProps.onChange(evt as any, val as number);
+            onChange?.(evt as any, val as number);
+          }}
           {...others}
         />
       </Fade>

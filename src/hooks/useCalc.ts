@@ -1,5 +1,5 @@
-import { SyntheticEvent, useEffect, useState } from "react";
-import { Unit } from "~/types";
+import { useEffect, useState } from "react";
+import { type Unit } from "~/types";
 
 const HOUR = 60 * 60;
 export const calcTime = (dist: number, speed: number) => (dist / speed) * HOUR; // seconds
@@ -35,21 +35,21 @@ export default function useCalc({
     }
   }, [initialTime, initialDist, initialSpeed, initialLock]);
 
-  const updateTime = (evt: SyntheticEvent, newTime: number) => {
+  const updateTime = (evt: React.SyntheticEvent, newTime: number) => {
     setTime(newTime);
 
     if (lock === "dist") setDist(calcDist(newTime, speed));
     if (lock === "speed") setSpeed(calcSpeed(newTime, dist));
   };
 
-  const updateDist = (evt: SyntheticEvent, newDist: number) => {
+  const updateDist = (evt: React.SyntheticEvent, newDist: number) => {
     setDist(newDist);
 
     if (lock === "time") setTime(calcTime(newDist, speed));
     if (lock === "speed") setSpeed(calcSpeed(time, newDist));
   };
 
-  const updateSpeed = (evt: SyntheticEvent, newSpeed: number) => {
+  const updateSpeed = (evt: React.SyntheticEvent, newSpeed: number) => {
     setSpeed(newSpeed);
 
     if (lock === "time") setTime(calcTime(dist, newSpeed));

@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { Mark, SliderConfig, Unit } from "~/types";
+import type { Mark, SliderConfig, Unit } from "~/types";
 
 type DistanceSetting = Record<Unit, SliderConfig>;
 

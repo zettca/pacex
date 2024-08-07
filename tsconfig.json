@@ -1,16 +1,6 @@
 {
+  "extends": "@total-typescript/tsconfig/bundler/dom/app",
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": true,
-    "module": "Preserve",
-    "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
     "types": ["vitest/globals"],
     "paths": {

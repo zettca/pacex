@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import type { SliderParams } from "~/types";
 
 const useSliderExpand = ({
@@ -9,7 +9,7 @@ const useSliderExpand = ({
   decMult = 1.1,
   incThresh = 0.95,
   decThresh = 0.6,
-}): [SliderParams, Dispatch<SetStateAction<number>>] => {
+}): [SliderParams, React.Dispatch<React.SetStateAction<number>>] => {
   const [max, setMax] = useState(initMax);
   const [value, setValue] = useState(initValue);
 

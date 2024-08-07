@@ -1,5 +1,3 @@
-import { ChangeEvent } from "react";
-
 export type Unit = "time" | "dist" | "speed";
 
 export type Mark = {
@@ -11,7 +9,7 @@ export type SliderParams = {
   min: number;
   max: number;
   value: number;
-  onChange: (evt: ChangeEvent, val: number) => void;
+  onChange: (evt: React.ChangeEvent, val: number) => void;
   onChangeCommitted: () => void;
 };
 

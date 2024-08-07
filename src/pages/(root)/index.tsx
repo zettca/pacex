@@ -4,7 +4,7 @@ import { CardContent } from "@mui/material";
 import SliderPicker from "~/components/SliderPicker";
 import useCalc from "~/hooks/useCalc";
 import useSettings from "~/hooks/useSettings";
-import { Unit } from "~/types";
+import { type Unit } from "~/types";
 import { formatDist, formatSpeed, formatTime } from "~/utils/formats";
 import "~/i18n/config";
 

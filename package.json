@@ -14,10 +14,10 @@
     "dev": "vite",
     "build": "vite build",
     "test": "vitest",
-    "check": "pnpm run \"/check:.*/\"",
-    "check:lint": "eslint src --color --cache",
-    "check:fmt": "prettier --check .",
-    "check:types": "tsc --noEmit"
+    "check": "pnpm run lint && pnpm run fmt && pnpm run typecheck",
+    "lint": "eslint src --color --cache",
+    "fmt": "prettier --check .",
+    "typecheck": "tsc --noEmit"
   },
   "browserslist": {
     "production": [
@@ -33,37 +33,36 @@
   },
   "packageManager": "pnpm@8.15.8+sha512.d1a029e1a447ad90bc96cd58b0fad486d2993d531856396f7babf2d83eb1823bb83c5a3d0fc18f675b2d10321d49eb161fece36fe8134aa5823ecd215feed392",
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@generouted/react-router": "^1.19.5",
-    "@mui/icons-material": "^5.15.19",
-    "@mui/material": "^5.15.19",
-    "@testing-library/react": "^15.0.7",
-    "i18next": "^23.11.5",
-    "i18next-browser-languagedetector": "^8.0.0",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@generouted/react-router": "^1.19.6",
+    "@mui/icons-material": "^5.16.6",
+    "@mui/material": "^5.16.6",
+    "@testing-library/react": "^14.3.1",
+    "i18next": "^23.12.2",
+    "i18next-browser-languagedetector": "^7.2.1",
     "i18next-http-backend": "^2.5.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-i18next": "^14.1.2",
-    "react-router-dom": "^6.23.1"
+    "react-i18next": "^13.5.0",
+    "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
-    "@playwright/test": "^1.44.1",
-    "@testing-library/jest-dom": "^6.4.5",
-    "@types/node": "^20.14.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+    "@playwright/test": "^1.46.0",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@total-typescript/tsconfig": "^1.0.4",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "@zettca/eslint-config-uikit-react": "^0.4.0",
     "eslint": "^8.57.0",
-    "happy-dom": "^14.12.0",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^3.3.0",
+    "happy-dom": "^12.10.3",
+    "prettier": "^3.3.3",
     "rollup-plugin-visualizer": "^5.12.0",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.12",
+    "typescript": "^5.5.4",
+    "vite": "^4.5.3",
     "vite-tsconfig-paths": "^4.3.2",
-    "vitest": "^1.6.0"
+    "vitest": "^0.34.6"
   }
 }
