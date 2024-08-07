@@ -1,5 +1,5 @@
 import { Suspense, useMemo } from "react";
-import { Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   colors,
   createTheme,
@@ -9,7 +9,21 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-const App = () => {
+const basename = import.meta.env.BASE_URL;
+
+const router = createBrowserRouter(
+  [
+    {
+      lazy: () => import("./routes/layout"),
+      children: [{ path: "/", lazy: () => import("./routes/index") }],
+    },
+  ],
+  {
+    basename,
+  },
+);
+
+export const App = () => {
   const prefersLightMode = useMediaQuery("(prefers-color-scheme: light)");
   const mode = useMemo(
     () => (prefersLightMode ? "light" : "dark"),
@@ -32,11 +46,9 @@ const App = () => {
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Outlet />
+          <RouterProvider router={router} />
         </ThemeProvider>
       </StyledEngineProvider>
     </Suspense>
   );
 };
-
-export default App;
