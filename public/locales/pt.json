@@ -1,21 +1,37 @@
 {
-  "distances": {
+  "marks": {
+    "12'": "12'",
+    "30'": "30'",
+    "1h": "1h",
+    "2h": "2h",
+    "3h": "3h",
+    "4h": "4h",
+    "6h": "6h",
+    "8h": "8h",
+    "12h": "12h",
+    "24h": "24h",
+
     "mile": "Milha",
-    "halfMarathon": "½ Maratona",
-    "marathon": "Maratona"
-  },
-  "speeds": {
+    "5K": "5K",
+    "10K": "10K",
+    "21K": "½ Maratona",
+    "42K": "Maratona",
+    "50K": "50K",
+    "50Mi": "50 Milhas",
+    "100K": "100K",
+    "100Mi": "100 Milhas",
+
     "walk": "Andar",
-    "jog": "Jog",
+    "jog": "Jogging",
     "run": "Correr",
-    "fastRun": "Rápido"
+    "runFast": "Correr Rápido",
+    "bekele": "Bekele",
+    "bolt": "Bolt"
   },
-  "components": {
-    "main": {
-      "time": "Tempo {{value}}",
-      "distance": "Distância {{value}}km",
-      "speed": "Velocidade {{minKm}}/km ({{kmHr}}km/h)",
-      "pace": "Ritmo {{minKm}}/km ({{kmHr}}km/h)"
-    }
+  "labels": {
+    "time": "Tempo {{value}}",
+    "distance": "Distância {{value}}km",
+    "speed": "Velocidade {{minKm}}/km ({{kmHr}}km/h)",
+    "pace": "Ritmo {{minKm}}/km ({{kmHr}}km/h)"
   }
 }

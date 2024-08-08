@@ -1,30 +1,32 @@
-import { useEffect, useId } from "react";
+import { useId } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Box,
   Fade,
   FormControlLabel,
+  Slider as MuiSlider,
   Radio,
-  Slider,
   styled,
   Typography,
   type RadioProps,
   type SliderProps,
 } from "@mui/material";
-import useSliderExpand from "~/hooks/useSliderExpand";
-import type { SliderConfig, SliderParams } from "~/types";
+import { useSliderExpand } from "~/hooks/useSliderExpand";
+import type { SliderConfig } from "~/types";
 
-const SliderX = styled(Slider)<SliderProps>(({ theme }) => ({
+const Slider = styled(MuiSlider)({
   "& .MuiSlider-markLabel": {
-    cursor: "pointer",
-    color: theme.palette.primary.light,
+    color: "currentColor",
   },
-}));
+});
 
-export interface SliderPickerProps extends Omit<SliderProps, "onChange"> {
+export interface SliderPickerProps
+  extends Omit<SliderProps, "onChange" | "onChangeCommitted"> {
   selected: boolean;
   buttons?: SliderConfig["buttons"];
   value: number;
-  onChange?: SliderParams["onChange"];
+  onChange?: (value: number) => void;
+  onChangeCommitted?: (value: number) => void;
   onLockClick?: RadioProps["onClick"];
 }
 
@@ -32,27 +34,25 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
   title,
   selected = false,
   buttons = [],
-  onChange,
-  onLockClick,
   min,
   max,
   value,
+  onChange,
+  onChangeCommitted,
+  onLockClick,
   ...others
 }) => {
+  const { t } = useTranslation(undefined, { keyPrefix: "marks" });
   const id = useId();
-  const [sliderProps, setValue] = useSliderExpand({ min, max, value });
+  const sliderProps = useSliderExpand({ min, max, value });
 
-  useEffect(() => {
-    setValue(value);
-  }, [value, setValue]);
-
-  const marks = [
-    ...buttons.filter((btn) => btn.value < sliderProps.max),
-    { value: sliderProps.max, label: "+" },
-  ];
+  const marks = buttons
+    .map((btn) => ({ value: btn.value, label: t(btn.label as any) }))
+    .filter((btn) => btn.value < sliderProps.max)
+    .concat({ value: sliderProps.max, label: "+" });
 
   return (
-    <section>
+    <section aria-labelledby={id}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <FormControlLabel
           control={
@@ -62,7 +62,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
             <Typography
               id={id}
               color={selected ? "primary" : "text.secondary"}
-              component="h1"
+              component="h2"
               variant="h6"
             >
               {title}
@@ -71,15 +71,19 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
         />
       </Box>
       <Fade in={!selected} timeout={800}>
-        <SliderX
+        <Slider
           disabled={selected}
           {...sliderProps}
           aria-labelledby={id}
           size="small"
           marks={marks}
           onChange={(evt, val) => {
-            sliderProps.onChange(evt as any, val as number);
-            onChange?.(evt as any, val as number);
+            sliderProps.onChange(val as number);
+            onChange?.(val as number);
+          }}
+          onChangeCommitted={(evt, val) => {
+            sliderProps.onChangeCommitted();
+            onChangeCommitted?.(val as number);
           }}
           {...others}
         />

@@ -8,8 +8,7 @@ import {
   ThemeProvider,
   useMediaQuery,
 } from "@mui/material";
-
-const basename = import.meta.env.BASE_URL;
+import "~/i18n/config";
 
 const router = createBrowserRouter(
   [
@@ -18,9 +17,7 @@ const router = createBrowserRouter(
       children: [{ path: "/", lazy: () => import("./routes/index") }],
     },
   ],
-  {
-    basename,
-  },
+  { basename: import.meta.env.BASE_URL },
 );
 
 export const App = () => {

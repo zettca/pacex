@@ -25,7 +25,7 @@ test("navigates to Distance ticks correctly", async ({ page }) => {
   const distSlider = page.getByRole("slider", { name: /Distance/ });
   const paceText = page.getByRole("heading", { name: /Pace/ });
 
-  await page.getByText("1 mi").click();
+  await page.getByText("Mile").click();
   await expect(distSlider).toHaveValue("1600");
   await expect(paceText).toContainText("Pace 18:45/km (3.2km/h)");
 

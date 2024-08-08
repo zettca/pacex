@@ -1,19 +1,21 @@
-import { useState } from "react";
-import type { SliderParams } from "~/types";
+import { useEffect, useState } from "react";
 
-const useSliderExpand = ({
+/** Allows a Slider to extend further than 100% */
+export const useSliderExpand = ({
   min: initMin = 0,
   max: initMax = 100,
-  value: initValue = 10,
+  value: valueParam = 10,
   incMult = 1.2,
   decMult = 1.1,
   incThresh = 0.95,
   decThresh = 0.6,
-}): [SliderParams, React.Dispatch<React.SetStateAction<number>>] => {
+}) => {
   const [max, setMax] = useState(initMax);
-  const [value, setValue] = useState(initValue);
+  const [value, setValue] = useState(valueParam);
 
-  const onChange: SliderParams["onChange"] = (evt, val) => {
+  useEffect(() => setValue(valueParam), [valueParam]);
+
+  const onChange = (val: number) => {
     if (value === val && val < max) return;
     setValue(val);
   };
@@ -24,7 +26,5 @@ const useSliderExpand = ({
     else if (value > max * incThresh) setMax(Math.floor(value * incMult));
   };
 
-  return [{ min: initMin, max, value, onChange, onChangeCommitted }, setValue];
+  return { min: initMin, max, value, onChange, onChangeCommitted } as const;
 };
-
-export default useSliderExpand;

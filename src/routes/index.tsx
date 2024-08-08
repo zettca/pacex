@@ -1,30 +1,48 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router-dom";
 import { CardContent } from "@mui/material";
 import SliderPicker from "~/components/SliderPicker";
 import useCalc from "~/hooks/useCalc";
+import { useSetParams } from "~/hooks/useSetParams";
 import useSettings from "~/hooks/useSettings";
-import { type Unit } from "~/types";
+import { type CalcParams, type Unit } from "~/types";
 import { formatDist, formatSpeed, formatTime } from "~/utils/formats";
 import "~/i18n/config";
 
-export const loader = () => null;
+export const loader = ({ request }: LoaderFunctionArgs) => {
+  const { searchParams } = new URL(request.url);
+  const { lock, time, dist, speed } = Object.fromEntries(searchParams);
+
+  return {
+    lock: (lock as Unit) || "speed",
+    time: Number(time) || 1800,
+    dist: Number(dist) || 5000,
+    speed: Number(speed) || 10000,
+  } satisfies CalcParams;
+};
 
 export const Component = () => {
-  const { t } = useTranslation(undefined, { keyPrefix: "components.main" });
-  const [settings] = useSettings();
-  const calc = useCalc({ time: 1800, dist: 5000 });
-  const { time, dist, speed, lock, setLock, update } = calc;
+  const { t } = useTranslation(undefined, { keyPrefix: "labels" });
+  const setParams = useSetParams();
+  const loaderData = useLoaderData() as ReturnType<typeof loader>;
+  const settings = useSettings();
+  const [state, setState] = useState(loaderData);
+  const calc = useCalc(state);
+
+  useEffect(() => {
+    setState(loaderData);
+  }, [loaderData]);
 
   const sliders = useMemo<Record<Unit, string>>(() => {
-    const { minKm, kmHr } = formatSpeed(speed);
+    const { minKm, kmHr } = formatSpeed(calc.speed);
 
     return {
-      time: t("time", { value: formatTime(time) }),
-      dist: t("distance", { value: formatDist(dist) }),
+      time: t("time", { value: formatTime(calc.time) }),
+      dist: t("distance", { value: formatDist(calc.dist) }),
       speed: t("pace", { minKm, kmHr }),
     };
-  }, [dist, speed, t, time]);
+  }, [t, calc]);
 
   return (
     <CardContent
@@ -34,9 +52,16 @@ export const Component = () => {
         <SliderPicker
           key={unit}
           title={title}
-          selected={lock === unit}
-          onChange={update[unit]}
-          onLockClick={() => setLock(unit)}
+          selected={loaderData.lock === unit}
+          onChange={(newValue) => {
+            setState((curr) => ({ ...curr, [unit]: newValue }));
+          }}
+          onChangeCommitted={(newValue) => {
+            setParams({ [unit]: String(newValue) });
+          }}
+          onLockClick={() => {
+            setParams({ lock: unit, [unit]: null }, { replace: false });
+          }}
           {...settings[unit]}
           value={calc[unit]}
         />

@@ -1,9 +1,9 @@
-import { useCallback, useState } from "react";
+import { useMemo } from "react";
 import type { Mark, SliderConfig, Unit } from "~/types";
 
 type DistanceSetting = Record<Unit, SliderConfig>;
 
-type Distances = keyof typeof SETTINGS;
+export type Distance = keyof typeof SETTINGS;
 
 const times: Mark[] = [
   { label: "12'", value: 12 * 60 },
@@ -19,24 +19,24 @@ const times: Mark[] = [
 ];
 
 const distances: Mark[] = [
-  { label: "1 mi", value: 1610 },
+  { label: "mile", value: 1610 },
   { label: "5K", value: 5000 },
   { label: "10K", value: 10000 },
-  { label: "½ Marathon", value: 21097 },
-  { label: "Marathon", value: 42195 },
+  { label: "21K", value: 21097 },
+  { label: "42K", value: 42195 },
   { label: "50K", value: 50000 },
-  { label: "50 mi", value: 80467 },
+  { label: "50Mi", value: 80467 },
   { label: "100K", value: 100000 },
-  { label: "100 Mi", value: 160934 },
+  { label: "100mi", value: 160934 },
 ];
 
 const speeds: Mark[] = [
-  { label: "🚶", value: 6000 },
-  { label: "🚶💨", value: 8000 },
-  { label: "🏃", value: 12000 },
-  { label: "🏃💨", value: 15000 },
-  { label: "Bekele", value: 24000 },
-  { label: "Bolt", value: 38000 },
+  { label: "walk", value: 6000 },
+  { label: "jog", value: 8000 },
+  { label: "run", value: 12000 },
+  { label: "runFast", value: 15000 },
+  { label: "bekele", value: 24000 },
+  { label: "bolt", value: 38000 },
 ];
 
 /**
@@ -78,14 +78,6 @@ const SETTINGS = {
   },
 } satisfies Record<string, DistanceSetting>;
 
-export default function useSettings(initialState: Distances = "DEFAULT") {
-  const [distSettings, setDistSettings] = useState<DistanceSetting>(
-    SETTINGS[initialState],
-  );
-
-  const setDistance = useCallback((newDist: Distances) => {
-    setDistSettings(SETTINGS[newDist] ?? SETTINGS.DEFAULT);
-  }, []);
-
-  return [distSettings, setDistance] as const;
+export default function useSettings(dist: Distance = "DEFAULT") {
+  return useMemo(() => SETTINGS[dist] ?? SETTINGS.DEFAULT, [dist]);
 }
