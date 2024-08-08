@@ -7,21 +7,16 @@ export const calcDist = (time: number, speed: number) => (speed * time) / HOUR; 
 export const calcPace = (time: number, dist: number) => (time / dist) * 1000; // seconds(/km)
 export const calcSpeed = (time: number, dist: number) => (dist * HOUR) / time; // meters(/hour)
 
-export default function useCalc({
-  time,
-  dist,
-  speed,
-  lock = "speed",
-}: CalcParams) {
+export function useCalc({ time, dist, speed, lock = "speed" }: CalcParams) {
   return useMemo(() => {
     switch (lock) {
       case "time":
-        return { time: calcTime(dist, speed), dist, speed };
+        return { lock, time: calcTime(dist, speed), dist, speed };
       case "dist":
-        return { time, dist: calcDist(time, speed), speed };
+        return { lock, time, dist: calcDist(time, speed), speed };
       case "speed":
       default:
-        return { time, dist, speed: calcSpeed(time, dist) };
+        return { lock, time, dist, speed: calcSpeed(time, dist) };
     }
   }, [dist, lock, speed, time]);
 }
