@@ -1,7 +1,6 @@
 import { useId } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  Box,
   Fade,
   FormControlLabel,
   Slider as MuiSlider,
@@ -53,7 +52,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
 
   return (
     <section aria-labelledby={id}>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+      <div className="flex items-center">
         <FormControlLabel
           control={
             <Radio size="small" checked={selected} onClick={onLockClick} />
@@ -69,7 +68,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
             </Typography>
           }
         />
-      </Box>
+      </div>
       <Fade in={!selected} timeout={800}>
         <Slider
           disabled={selected}

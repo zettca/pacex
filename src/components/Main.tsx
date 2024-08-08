@@ -42,9 +42,7 @@ export const Main = ({ data, onCommit }: MainProps) => {
   }, [data]);
 
   return (
-    <CardContent
-      sx={{ display: "flex", flexDirection: "column", gap: 2, p: 3 }}
-    >
+    <CardContent className="flex flex-col gap-4 p-6">
       {Object.entries(sliders).map(([unit, title]) => (
         <SliderPicker
           key={unit}
