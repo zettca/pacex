@@ -15,7 +15,7 @@
     "build": "vite build",
     "test": "vitest",
     "check": "pnpm run lint && pnpm run fmt && pnpm run typecheck",
-    "lint": "eslint src --color --cache",
+    "lint": "biome lint",
     "fmt": "prettier --check .",
     "typecheck": "tsc --noEmit"
   },
@@ -47,15 +47,15 @@
     "react-router-dom": "^6.26.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
     "@playwright/test": "^1.46.0",
     "@testing-library/jest-dom": "^6.4.8",
     "@total-typescript/tsconfig": "^1.0.4",
+    "@types/node": "^22.1.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "@zettca/eslint-config-uikit-react": "^0.4.0",
-    "eslint": "^8.57.0",
     "happy-dom": "^14.12.3",
     "prettier": "^3.3.3",
     "rollup-plugin-visualizer": "^5.12.0",

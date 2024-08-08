@@ -1,8 +1,0 @@
-{
-  "extends": ["@zettca/uikit-react", "@zettca/uikit-react/extras"],
-  "rules": {
-    "arrow-body-style": "off",
-    "import/order": "off",
-    "import/prefer-default-export": "off"
-  }
-}

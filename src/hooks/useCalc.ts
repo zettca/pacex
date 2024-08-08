@@ -15,7 +15,6 @@ export function useCalc({ time, dist, speed, lock = "speed" }: CalcParams) {
       case "dist":
         return { lock, time, dist: calcDist(time, speed), speed };
       case "speed":
-      default:
         return { lock, time, dist, speed: calcSpeed(time, dist) };
     }
   }, [dist, lock, speed, time]);

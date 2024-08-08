@@ -1,4 +1,4 @@
-import { type SliderProps } from "@mui/material";
+import type { SliderProps } from "@mui/material";
 
 export type Unit = "time" | "dist" | "speed";
 

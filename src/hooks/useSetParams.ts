@@ -7,13 +7,13 @@ const REPLACE_THRESHOLD = 6_000;
 
 /** Adds `newParams` to `URLSearchParams`, or removes if value is nullish */
 const setParams = (newParams: Params) => (params: URLSearchParams) => {
-  Object.entries(newParams).forEach(([key, value]) => {
+  for (const [key, value] of Object.entries(newParams)) {
     if (value != null) {
       params.set(key, String(value));
     } else {
       params.delete(key);
     }
-  });
+  }
   // params.sort();
   return params;
 };
