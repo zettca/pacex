@@ -3,7 +3,7 @@ import { useSearchParams, type NavigateOptions } from "react-router-dom";
 
 type Params = Record<string, string | number | null | undefined>;
 
-const REPLACE_THRESHOLD = 6_000;
+const REPLACE_THRESHOLD = 4_000;
 
 /** Adds `newParams` to `URLSearchParams`, or removes if value is nullish */
 const setParams = (newParams: Params) => (params: URLSearchParams) => {
@@ -24,6 +24,7 @@ export function useSetParams() {
 
   return useCallback(
     (params: Params, opts?: NavigateOptions) => {
+      // TODO: disable `replace` & debounce params
       const now = Date.now();
       const replace = now - lastUpdated.current < REPLACE_THRESHOLD;
       lastUpdated.current = now;

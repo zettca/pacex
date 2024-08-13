@@ -32,13 +32,9 @@ export const Main = ({ data, onCommit }: MainProps) => {
   const values = useCalc(state);
   const sliders = useSliders(values);
 
+  // align internal state with external searchParams data
   useEffect(() => {
-    setState((c) => ({
-      lock: data.lock,
-      time: data.time || c.time,
-      dist: data.dist || c.dist,
-      speed: data.speed || c.speed,
-    }));
+    setState(data);
   }, [data]);
 
   return (
@@ -47,7 +43,7 @@ export const Main = ({ data, onCommit }: MainProps) => {
         <SliderPicker
           key={unit}
           title={title}
-          selected={data.lock === unit}
+          selected={state.lock === unit}
           onChange={(newValue) => setState((c) => ({ ...c, [unit]: newValue }))}
           onChangeCommitted={() => onCommit(values)}
           onLockClick={() => onCommit({ ...values, lock: unit })}
