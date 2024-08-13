@@ -46,9 +46,6 @@ devDependencies:
   '@biomejs/biome':
     specifier: ^1.8.3
     version: 1.8.3
-  '@ianvs/prettier-plugin-sort-imports':
-    specifier: ^4.3.1
-    version: 4.3.1(prettier@3.3.3)
   '@playwright/test':
     specifier: ^1.46.0
     version: 1.46.0
@@ -70,6 +67,9 @@ devDependencies:
   '@vitejs/plugin-react':
     specifier: ^4.3.1
     version: 4.3.1(vite@5.4.0)
+  '@zettca/prettier-config':
+    specifier: ^0.2.0
+    version: 0.2.0(prettier@3.3.3)
   happy-dom:
     specifier: ^14.12.3
     version: 14.12.3
@@ -1878,6 +1878,18 @@ packages:
       estree-walker: 3.0.3
       loupe: 3.1.1
       tinyrainbow: 1.2.0
+    dev: true
+
+  /@zettca/prettier-config@0.2.0(prettier@3.3.3):
+    resolution: {integrity: sha512-2SMRn1aLddfqVeptYtgGnhquOopc/5Rypy28QGd9RkGZpexRUwC2eZw3BrUgt2vyuXHGIs4NmPKDx73dfVBzYw==}
+    peerDependencies:
+      prettier: ^3.0.0
+    dependencies:
+      '@ianvs/prettier-plugin-sort-imports': 4.3.1(prettier@3.3.3)
+      prettier: 3.3.3
+    transitivePeerDependencies:
+      - '@vue/compiler-sfc'
+      - supports-color
     dev: true
 
   /acorn@8.12.1:
