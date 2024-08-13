@@ -10,7 +10,8 @@ import {
   type SliderProps,
 } from "@mui/material";
 import { useSliderExpand } from "~/hooks/useSliderExpand";
-import type { SliderConfig } from "~/types";
+import type { Mark, SliderConfig } from "~/types";
+import { SplitButton } from "./SplitButton";
 
 export interface SliderPickerProps
   extends Omit<SliderProps, "onChange" | "onChangeCommitted"> {
@@ -38,15 +39,25 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
   const id = useId();
   const sliderProps = useSliderExpand({ min, max, value });
 
-  const marks = buttons
-    .map((btn) => ({ value: btn.value, label: t(btn.label as any) }))
+  const marks = buttons.map<Mark>((btn) => ({
+    value: btn.value,
+    label: t(btn.label as any),
+  }));
+
+  const visibleMarks = marks
     .filter((btn) => btn.value < sliderProps.max)
     .concat({ value: sliderProps.max, label: "+" });
 
+  const handleChange = (val: number) => {
+    sliderProps.onChange(val);
+    onChange?.(val);
+  };
+
   return (
     <section aria-labelledby={id}>
-      <div className="flex items-center">
+      <div className="flex items-center gap-1">
         <FormControlLabel
+          className="mr-0"
           control={
             <Radio size="small" checked={selected} onClick={onLockClick} />
           }
@@ -61,6 +72,14 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
             </Typography>
           }
         />
+        {!selected && (
+          <SplitButton
+            options={marks}
+            onChange={(val) => {
+              handleChange?.(val);
+            }}
+          />
+        )}
       </div>
       <Fade in={!selected} timeout={800}>
         <Slider
@@ -69,7 +88,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
           {...sliderProps}
           aria-labelledby={id}
           size="small"
-          marks={marks}
+          marks={visibleMarks}
           onChange={(evt, val) => {
             sliderProps.onChange(val as number);
             onChange?.(val as number);

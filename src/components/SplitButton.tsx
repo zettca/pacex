@@ -1,51 +1,38 @@
-import { useEffect, useRef, useState } from "react";
-import { ArrowDropDown } from "@mui/icons-material";
-import { Button, Menu, MenuItem } from "@mui/material";
+import { useRef, useState } from "react";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import { IconButton, Menu, MenuItem } from "@mui/material";
+import type { Mark } from "~/types";
 
 export interface SplitButtonProps {
-  index?: number;
-  options?: string[];
-  onChange?: (
-    event: React.MouseEvent<HTMLLIElement> | null,
-    value: string,
-  ) => void;
+  options: Mark[];
+  onChange: (value: number) => void;
 }
 
-export const SplitButton = ({
-  index = 0,
-  options = [],
-  onChange,
-}: SplitButtonProps) => {
+export const SplitButton = ({ options = [], onChange }: SplitButtonProps) => {
   const [open, setOpen] = useState(false);
-  const [selectedIndex, setSelectedIndex] = useState(index);
   const ref = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    setSelectedIndex(index);
-  }, [index]);
-
-  useEffect(() => {
-    setOpen(false);
-    onChange?.(null, options[selectedIndex]!);
-  }, [selectedIndex, options, onChange]);
 
   return (
     <>
-      <Button
+      <IconButton
         ref={ref}
+        color="primary"
+        size="small"
         onClick={() => setOpen((prevOpen) => !prevOpen)}
-        endIcon={<ArrowDropDown />}
       >
-        {options[selectedIndex]}
-      </Button>
+        <ArrowDropDown />
+      </IconButton>
       <Menu anchorEl={ref.current} open={open} onClose={() => setOpen(false)}>
-        {options.map((option, idx) => (
+        {options.map(({ value, label }) => (
           <MenuItem
-            key={option}
-            selected={idx === selectedIndex}
-            onClick={() => setSelectedIndex(idx)}
+            key={label}
+            value={value}
+            onClick={() => {
+              setOpen(false);
+              onChange(value);
+            }}
           >
-            {option}
+            {label}
           </MenuItem>
         ))}
       </Menu>
