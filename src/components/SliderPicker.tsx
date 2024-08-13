@@ -3,21 +3,14 @@ import { useTranslation } from "react-i18next";
 import {
   Fade,
   FormControlLabel,
-  Slider as MuiSlider,
   Radio,
-  styled,
+  Slider,
   Typography,
   type RadioProps,
   type SliderProps,
 } from "@mui/material";
 import { useSliderExpand } from "~/hooks/useSliderExpand";
 import type { SliderConfig } from "~/types";
-
-const Slider = styled(MuiSlider)({
-  "& .MuiSlider-markLabel": {
-    color: "currentColor",
-  },
-});
 
 export interface SliderPickerProps
   extends Omit<SliderProps, "onChange" | "onChangeCommitted"> {
@@ -72,6 +65,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
       <Fade in={!selected} timeout={800}>
         <Slider
           disabled={selected}
+          classes={{ markLabel: "text-current" }}
           {...sliderProps}
           aria-labelledby={id}
           size="small"
