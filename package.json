@@ -31,29 +31,29 @@
       "last 1 safari version"
     ]
   },
-  "packageManager": "pnpm@8.15.8+sha512.d1a029e1a447ad90bc96cd58b0fad486d2993d531856396f7babf2d83eb1823bb83c5a3d0fc18f675b2d10321d49eb161fece36fe8134aa5823ecd215feed392",
+  "packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247",
   "prettier": "@zettca/prettier-config",
   "dependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^5.16.6",
-    "@mui/material": "^5.16.6",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
     "@testing-library/react": "^16.0.0",
-    "i18next": "^23.12.2",
+    "i18next": "^23.14.0",
     "i18next-browser-languagedetector": "^8.0.0",
-    "i18next-http-backend": "^2.5.2",
+    "i18next-http-backend": "^2.6.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-i18next": "^15.0.1",
-    "react-router-dom": "^6.26.0"
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
-    "@playwright/test": "^1.46.0",
+    "@playwright/test": "^1.46.1",
     "@testing-library/jest-dom": "^6.4.8",
     "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^22.1.0",
-    "@types/react": "^18.3.3",
+    "@types/node": "^22.4.1",
+    "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "@zettca/prettier-config": "^0.2.0",
@@ -61,9 +61,9 @@
     "prettier": "^3.3.3",
     "rollup-plugin-visualizer": "^5.12.0",
     "typescript": "^5.5.4",
-    "unocss": "^0.61.9",
-    "vite": "^5.4.0",
-    "vite-tsconfig-paths": "^5.0.0",
+    "unocss": "^0.62.2",
+    "vite": "^5.4.2",
+    "vite-tsconfig-paths": "^5.0.1",
     "vitest": "^2.0.5"
   }
 }
