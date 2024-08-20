@@ -10,9 +10,9 @@
   },
   "homepage": ".",
   "scripts": {
-    "start": "vite",
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "test": "vitest",
     "check": "pnpm run lint && pnpm run fmt && pnpm run typecheck",
     "lint": "biome lint",
