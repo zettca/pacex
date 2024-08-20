@@ -13,7 +13,10 @@ export const useSliderExpand = ({
   const [max, setMax] = useState(initMax);
   const [value, setValue] = useState(valueParam);
 
-  useEffect(() => setValue(valueParam), [valueParam]);
+  useEffect(() => {
+    setValue(valueParam);
+    if (valueParam > max) setMax(valueParam);
+  }, [valueParam]);
 
   const onChange = (val: number) => {
     if (value === val && val < max) return;
