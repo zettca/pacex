@@ -9,18 +9,16 @@ const setup = () =>
     />,
   );
 
-describe("App renders", () => {
-  test("sliders", async () => {
-    setup();
+it("renders the sliders", async () => {
+  setup();
 
-    const sliders = await screen.findAllByRole("slider");
-    expect(sliders.length).toBe(2);
-  });
+  const sliders = await screen.findAllByRole("slider");
+  expect(sliders.length).toBe(2);
+});
 
-  test("titles", async () => {
-    setup();
+it("renders the titles", async () => {
+  setup();
 
-    const headers = await screen.findAllByRole("heading", { level: 2 });
-    expect(headers.length).toBe(3);
-  });
+  const headers = await screen.findAllByRole("heading", { level: 2 });
+  expect(headers.length).toBe(3);
 });
