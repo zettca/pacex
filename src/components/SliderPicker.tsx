@@ -45,6 +45,7 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
   }));
 
   const visibleMarks = marks
+    .filter((btn) => btn.value > value * 0.06)
     .filter((btn) => btn.value < sliderProps.max)
     .concat({ value: sliderProps.max, label: "+" });
 

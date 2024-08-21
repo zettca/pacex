@@ -27,7 +27,7 @@ const distances: Mark[] = [
   { label: "50K", value: 50000 },
   { label: "50Mi", value: 80467 },
   { label: "100K", value: 100000 },
-  { label: "100mi", value: 160934 },
+  { label: "100Mi", value: 160934 },
 ];
 
 const speeds: Mark[] = [
