@@ -56,32 +56,29 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
 
   return (
     <section aria-labelledby={id}>
-      <div className="flex items-center gap-1">
-        <FormControlLabel
-          className="mr-0"
-          control={
-            <Radio size="small" checked={selected} onClick={onLockClick} />
-          }
-          label={
-            <Typography
-              id={id}
-              color={selected ? "primary" : "text.secondary"}
-              component="h2"
-              variant="h6"
-            >
-              {title}
-            </Typography>
-          }
+      <FormControlLabel
+        control={
+          <Radio size="small" checked={selected} onClick={onLockClick} />
+        }
+        label={
+          <Typography
+            id={id}
+            color={selected ? "primary" : "text.secondary"}
+            component="h2"
+            variant="h6"
+          >
+            {title}
+          </Typography>
+        }
+      />
+      {!selected && (
+        <SplitButton
+          options={marks}
+          onChange={(val) => {
+            handleChange?.(val);
+          }}
         />
-        {!selected && (
-          <SplitButton
-            options={marks}
-            onChange={(val) => {
-              handleChange?.(val);
-            }}
-          />
-        )}
-      </div>
+      )}
       <Fade in={!selected} timeout={800}>
         <Slider
           disabled={selected}
