@@ -34,10 +34,10 @@
   "packageManager": "pnpm@9.7.1+sha512.faf344af2d6ca65c4c5c8c2224ea77a81a5e8859cbc4e06b1511ddce2f0151512431dd19e6aff31f2c6a8f5f2aced9bd2273e1fed7dd4de1868984059d2c4247",
   "prettier": "@zettca/prettier-config",
   "dependencies": {
-    "@emotion/react": "^11.13.0",
+    "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^5.16.7",
-    "@mui/material": "^5.16.7",
+    "@mui/icons-material": "^6.0.0",
+    "@mui/material": "^6.0.0",
     "@testing-library/react": "^16.0.0",
     "i18next": "^23.14.0",
     "i18next-browser-languagedetector": "^8.0.0",

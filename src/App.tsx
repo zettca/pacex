@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from "react";
+import { Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   colors,
@@ -6,7 +6,6 @@ import {
   CssBaseline,
   StyledEngineProvider,
   ThemeProvider,
-  useMediaQuery,
 } from "@mui/material";
 import "~/i18n/config";
 
@@ -20,24 +19,15 @@ const router = createBrowserRouter(
   { basename: import.meta.env.BASE_URL },
 );
 
+const theme = createTheme({
+  cssVariables: true,
+  colorSchemes: {
+    dark: { palette: { primary: { main: colors.orange[400] } } },
+    light: { palette: { primary: { main: colors.orange[600] } } },
+  },
+});
+
 export const App = () => {
-  const prefersLightMode = useMediaQuery("(prefers-color-scheme: light)");
-  const mode = useMemo(
-    () => (prefersLightMode ? "light" : "dark"),
-    [prefersLightMode],
-  );
-
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-          primary: { main: colors.orange[400] },
-        },
-      }),
-    [mode],
-  );
-
   return (
     <Suspense>
       <StyledEngineProvider injectFirst>
