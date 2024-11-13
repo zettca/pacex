@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
 import { Card, Container } from "@mui/material";
 import { useIntervalValue } from "~/hooks/useIntervalValue";
 import { random } from "~/utils";

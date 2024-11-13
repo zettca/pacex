@@ -1,4 +1,4 @@
-import { useLoaderData, type LoaderFunctionArgs } from "react-router-dom";
+import { useLoaderData, type LoaderFunctionArgs } from "react-router";
 import { Main } from "~/components/Main";
 import { useSetParams } from "~/hooks/useSetParams";
 import type { CalcParams, Unit } from "~/types";

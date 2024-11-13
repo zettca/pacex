@@ -1,5 +1,5 @@
 import { useCallback, useRef } from "react";
-import { useSearchParams, type NavigateOptions } from "react-router-dom";
+import { useSearchParams, type NavigateOptions } from "react-router";
 
 type Params = Record<string, string | number | null | undefined>;
 
