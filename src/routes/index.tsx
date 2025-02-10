@@ -3,7 +3,7 @@ import { Main } from "~/components/Main";
 import { useSetParams } from "~/hooks/useSetParams";
 import type { CalcParams, Unit } from "~/types";
 
-export const loader = ({ request }: LoaderFunctionArgs) => {
+export function loader({ request }: LoaderFunctionArgs) {
   const { searchParams } = new URL(request.url);
   const { lock, time, dist, speed } = Object.fromEntries(searchParams);
 
@@ -13,9 +13,9 @@ export const loader = ({ request }: LoaderFunctionArgs) => {
     dist: Number(dist) || 5000,
     speed: Number(speed) || 10000,
   } satisfies CalcParams;
-};
+}
 
-export const Component = () => {
+export function Component() {
   const setParams = useSetParams();
   const loaderData = useLoaderData() as ReturnType<typeof loader>;
 
@@ -27,4 +27,4 @@ export const Component = () => {
       }}
     />
   );
-};
+}

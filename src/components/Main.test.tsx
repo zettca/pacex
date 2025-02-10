@@ -13,12 +13,12 @@ it("renders the sliders", async () => {
   setup();
 
   const sliders = await screen.findAllByRole("slider");
-  expect(sliders.length).toBe(2);
+  expect(sliders).toHaveLength(2);
 });
 
 it("renders the titles", async () => {
   setup();
 
   const headers = await screen.findAllByRole("heading", { level: 2 });
-  expect(headers.length).toBe(3);
+  expect(headers).toHaveLength(3);
 });

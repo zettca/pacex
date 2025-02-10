@@ -75,6 +75,9 @@ importers:
       happy-dom:
         specifier: ^17.0.3
         version: 17.0.3
+      oxlint:
+        specifier: ^0.15.10
+        version: 0.15.10
       prettier:
         specifier: ^3.5.0
         version: 3.5.0
@@ -719,6 +722,46 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  '@oxlint/darwin-arm64@0.15.10':
+    resolution: {integrity: sha512-nGuKO+lZh4vS2Lb9lceePSQkXLhKcBPIAlux8BY+ewk2LnNNWsCbHhoslBwLF2h0MB8HiqOIk8WzRwllCY8sBg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxlint/darwin-x64@0.15.10':
+    resolution: {integrity: sha512-Xpyk8PiNKIrxYuundViBsxLcltYPGy+M5w/mO7EI9eeqSizMvWNimQgfPzK5fgh3V0gv8bJG0IyPZJVN0uEE9A==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxlint/linux-arm64-gnu@0.15.10':
+    resolution: {integrity: sha512-fUxOOYlQBXc6Cz7d40zE2G6VG4yhR9vz+P1M8T1NhTe6yFUzfCCWV+zmHxpUPEy9dgGZPIvodIx7bP+kOPEmuA==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint/linux-arm64-musl@0.15.10':
+    resolution: {integrity: sha512-JESSO73nplnTftaBpWdgjsOtuSfl7Jeg3I37qJYVtHIxxyJMtHuuUd9g0K0MLbwcue2K7DFCnzlDNlxer2yrgQ==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint/linux-x64-gnu@0.15.10':
+    resolution: {integrity: sha512-NS4joBtL8Hg7zPBlPxSzrSRqkxtZfABf+fAY8vNxwYMsG8I8VoQZQdhz7+0p6ecg0+jH3CmIpDQfo73eaUBwoA==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint/linux-x64-musl@0.15.10':
+    resolution: {integrity: sha512-zC2eEEe4scfsoUV87YsZFOSfPutxeaAmCI9Ys2G1lQoTyZ+9G9nuxTzBMla/yspX6mQGxonXPxLxYbIlDT24vA==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint/win32-arm64@0.15.10':
+    resolution: {integrity: sha512-u8nHap9L96zTQvwHYqn1ZcoiHzLR24ifuKDBIwlmwEVYucUgE55tUc+ea8kPUUB4uvfOv0HtAxNFuKr43biPzg==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxlint/win32-x64@0.15.10':
+    resolution: {integrity: sha512-OvG4lRw2AnTDJnCb1Jm1bzE2KuRvJLE+fQ6TDSj0UQSmTGHLXIZLc+Y8HMxntCx0p850FVBtYixdg2sHkv+i3g==}
+    cpu: [x64]
+    os: [win32]
 
   '@playwright/test@1.50.1':
     resolution: {integrity: sha512-Jii3aBg+CEDpgnuDxEp/h7BimHcUTDlpEtce89xEumlJ5ef2hqepZ+PWp1DDpYC/VO9fmWVI1IlEaoI5fK9FXQ==}
@@ -1519,6 +1562,11 @@ packages:
   open@8.4.2:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
+
+  oxlint@0.15.10:
+    resolution: {integrity: sha512-962UBhpbd041fnx1GjQIY7uGIAXcAl/t45Xd6IZi11PyXVRHz7TjC4qpndrwp98Lfg7HuDaMXoOWOaNsgtEgag==}
+    engines: {node: '>=8.*'}
+    hasBin: true
 
   package-manager-detector@0.2.9:
     resolution: {integrity: sha512-+vYvA/Y31l8Zk8dwxHhL3JfTuHPm6tlxM2A3GeQyl7ovYnSp1+mzAxClxaOr0qO1TtPxbQxetI7v5XqKLJZk7Q==}
@@ -2499,6 +2547,30 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.0.8
 
+  '@oxlint/darwin-arm64@0.15.10':
+    optional: true
+
+  '@oxlint/darwin-x64@0.15.10':
+    optional: true
+
+  '@oxlint/linux-arm64-gnu@0.15.10':
+    optional: true
+
+  '@oxlint/linux-arm64-musl@0.15.10':
+    optional: true
+
+  '@oxlint/linux-x64-gnu@0.15.10':
+    optional: true
+
+  '@oxlint/linux-x64-musl@0.15.10':
+    optional: true
+
+  '@oxlint/win32-arm64@0.15.10':
+    optional: true
+
+  '@oxlint/win32-x64@0.15.10':
+    optional: true
+
   '@playwright/test@1.50.1':
     dependencies:
       playwright: 1.50.1
@@ -3355,6 +3427,17 @@ snapshots:
       define-lazy-prop: 2.0.0
       is-docker: 2.2.1
       is-wsl: 2.2.0
+
+  oxlint@0.15.10:
+    optionalDependencies:
+      '@oxlint/darwin-arm64': 0.15.10
+      '@oxlint/darwin-x64': 0.15.10
+      '@oxlint/linux-arm64-gnu': 0.15.10
+      '@oxlint/linux-arm64-musl': 0.15.10
+      '@oxlint/linux-x64-gnu': 0.15.10
+      '@oxlint/linux-x64-musl': 0.15.10
+      '@oxlint/win32-arm64': 0.15.10
+      '@oxlint/win32-x64': 0.15.10
 
   package-manager-detector@0.2.9: {}
 

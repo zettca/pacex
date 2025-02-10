@@ -27,7 +27,7 @@ const theme = createTheme({
   },
 });
 
-export const App = () => {
+export function App() {
   return (
     <Suspense>
       <StyledEngineProvider injectFirst>
@@ -38,4 +38,4 @@ export const App = () => {
       </StyledEngineProvider>
     </Suspense>
   );
-};
+}

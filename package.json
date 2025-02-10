@@ -14,8 +14,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "check": "pnpm run lint && pnpm run fmt && pnpm run typecheck",
-    "lint": "biome lint",
+    "check": "pnpm lint && pnpm fmt && pnpm typecheck",
+    "lint": "oxlint",
     "fmt": "prettier --check .",
     "typecheck": "tsc --noEmit"
   },
@@ -58,6 +58,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "@zettca/prettier-config": "^0.2.0",
     "happy-dom": "^17.0.3",
+    "oxlint": "^0.15.10",
     "prettier": "^3.5.0",
     "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "^5.7.3",

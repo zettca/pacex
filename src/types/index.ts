@@ -2,7 +2,7 @@ import type { SliderProps } from "@mui/material";
 
 export type Unit = "time" | "dist" | "speed";
 
-export type CalcParams = {
+export interface CalcParams {
   /** time in seconds */
   time: number;
   /** distance in meters */
@@ -11,12 +11,12 @@ export type CalcParams = {
   speed: number;
   /** Unit to calculate */
   lock: Unit;
-};
+}
 
-export type Mark = {
+export interface Mark {
   label: string;
   value: number;
-};
+}
 
 export type SliderConfig = Pick<SliderProps, "min" | "max" | "step"> & {
   value?: number;
