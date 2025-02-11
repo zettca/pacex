@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CardContent } from "@mui/material";
-import { useCalc } from "~/hooks/useCalc";
+import { calcValues, useCalc } from "~/hooks/useCalc";
 import useSettings from "~/hooks/useSettings";
 import type { CalcParams, Unit } from "~/types";
 import { formatDist, formatSpeed, formatTime } from "~/utils/formats";
 import SliderPicker from "./SliderPicker";
 
-const useSliders = ({ time, dist, speed }: Omit<CalcParams, "lock">) => {
+const useSliderLabels = ({ time, dist, speed }: Omit<CalcParams, "lock">) => {
   const { t } = useTranslation(undefined, { keyPrefix: "labels" });
 
   return useMemo<Record<Unit, string>>(() => {
@@ -30,7 +30,7 @@ export const Main = ({ data, onCommit }: MainProps) => {
   const settings = useSettings();
   const [state, setState] = useState(data);
   const values = useCalc(state);
-  const sliders = useSliders(values);
+  const sliders = useSliderLabels(values);
 
   // align internal state with external searchParams data
   useEffect(() => {
@@ -44,8 +44,12 @@ export const Main = ({ data, onCommit }: MainProps) => {
           key={unit}
           title={title}
           selected={state.lock === unit}
-          onChange={(newValue) => setState((c) => ({ ...c, [unit]: newValue }))}
-          onChangeCommitted={() => onCommit(values)}
+          onChange={(newValue) => {
+            setState((c) => ({ ...c, [unit]: newValue }));
+          }}
+          onChangeCommitted={(newValue) => {
+            onCommit(calcValues({ ...state, [unit]: newValue }));
+          }}
           onLockClick={() => onCommit({ ...values, lock: unit })}
           {...settings[unit]}
           value={values[unit]}

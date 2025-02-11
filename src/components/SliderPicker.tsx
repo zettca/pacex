@@ -49,11 +49,6 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
     .filter((btn) => btn.value < sliderProps.max)
     .concat({ value: sliderProps.max, label: "+" });
 
-  const handleChange = (val: number) => {
-    sliderProps.onChange(val);
-    onChange?.(val);
-  };
-
   return (
     <section aria-labelledby={id}>
       <FormControlLabel
@@ -75,7 +70,8 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
         <SplitButton
           options={marks}
           onChange={(val) => {
-            handleChange?.(val);
+            sliderProps.onChangeCommitted();
+            onChangeCommitted?.(val);
           }}
         />
       )}
