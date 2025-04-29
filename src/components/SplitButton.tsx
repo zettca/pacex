@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
 import { IconButton, Menu, MenuItem } from "@mui/material";
-import type { Mark } from "~/types";
+import type { Mark } from "../types";
 
 export interface SplitButtonProps {
   options: Mark[];

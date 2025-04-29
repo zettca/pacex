@@ -1,4 +1,4 @@
-import React from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App";
 import "virtual:uno.css";
@@ -6,7 +6,7 @@ import "virtual:uno.css";
 const root = createRoot(document.getElementById("root")!);
 
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <App />
-  </React.StrictMode>,
+  </StrictMode>,
 );

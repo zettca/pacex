@@ -7,7 +7,7 @@ import {
   StyledEngineProvider,
   ThemeProvider,
 } from "@mui/material";
-import "~/i18n/config";
+import "./i18n/config";
 
 const router = createBrowserRouter(
   [

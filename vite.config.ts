@@ -4,11 +4,10 @@
 import react from "@vitejs/plugin-react";
 import unoCSS from "unocss/vite";
 import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [unoCSS(), react(), tsconfigPaths()],
+  plugins: [unoCSS(), react()],
   base: "./",
   server: {
     // static port for Playwright

@@ -1,7 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router";
-import { Main } from "~/components/Main";
-import { useSetParams } from "~/hooks/useSetParams";
-import type { CalcParams, Unit } from "~/types";
+import { Main } from "../components/Main";
+import { useSetParams } from "../hooks/useSetParams";
+import type { CalcParams, Unit } from "../types";
 
 export function loader({ request }: LoaderFunctionArgs) {
   const { searchParams } = new URL(request.url);

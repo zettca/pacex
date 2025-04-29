@@ -9,8 +9,8 @@ import {
   type RadioProps,
   type SliderProps,
 } from "@mui/material";
-import { useSliderExpand } from "~/hooks/useSliderExpand";
-import type { Mark, SliderConfig } from "~/types";
+import { useSliderExpand } from "../hooks/useSliderExpand";
+import type { Mark, SliderConfig } from "../types";
 import { SplitButton } from "./SplitButton";
 
 export interface SliderPickerProps

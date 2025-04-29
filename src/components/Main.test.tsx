@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Main } from "~/components/Main";
+import { Main } from "./Main";
 
 const setup = () =>
   render(

@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import { Card, Container } from "@mui/material";
-import { random } from "~/utils";
+import { random } from "../utils";
 
 const bgNum = random(3);
 

@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { CardContent } from "@mui/material";
-import { calcValues, useCalc } from "~/hooks/useCalc";
-import useSettings from "~/hooks/useSettings";
-import type { CalcParams, Unit } from "~/types";
-import { formatDist, formatSpeed, formatTime } from "~/utils/formats";
+import { calcValues, useCalc } from "../hooks/useCalc";
+import useSettings from "../hooks/useSettings";
+import type { CalcParams, Unit } from "../types";
+import { formatDist, formatSpeed, formatTime } from "../utils/formats";
 import SliderPicker from "./SliderPicker";
 
 const useSliderLabels = ({ time, dist, speed }: Omit<CalcParams, "lock">) => {
