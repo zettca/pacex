@@ -32,13 +32,12 @@
     ]
   },
   "packageManager": "pnpm@10.2.1+sha512.398035c7bd696d0ba0b10a688ed558285329d27ea994804a52bad9167d8e3a72bcb993f9699585d3ca25779ac64949ef422757a6c31102c12ab932e5cbe5cc92",
-  "prettier": "@zettca/prettier-config",
+  "prettier": "@zettca/config/prettier",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
-    "@testing-library/react": "^16.3.0",
     "i18next": "^24.2.3",
     "i18next-browser-languagedetector": "^8.0.5",
     "i18next-http-backend": "^3.0.2",
@@ -48,16 +47,16 @@
     "react-router": "7.5.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@playwright/test": "^1.52.0",
     "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
     "@total-typescript/tsconfig": "^1.0.4",
     "@types/node": "^22.15.3",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
-    "@zettca/prettier-config": "^0.2.0",
+    "@zettca/config": "^0.1.1",
     "happy-dom": "^17.4.4",
     "oxlint": "^0.15.15",
     "prettier": "^3.5.3",

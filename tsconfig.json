@@ -1,5 +1,5 @@
 {
-  "extends": "@total-typescript/tsconfig/bundler/dom/app",
+  "extends": "@zettca/config/tsconfig",
   "compilerOptions": {
     "jsx": "react-jsx",
     "types": ["vitest/globals"]
