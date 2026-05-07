@@ -21,12 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - uses: pnpm/action-setup@v6
+
       - uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: "pnpm"
-
-      - uses: pnpm/action-setup@v6
 
       - run: pnpm i
 
