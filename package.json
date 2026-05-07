@@ -36,14 +36,14 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^7.3.10",
-    "@mui/material": "^7.3.10",
-    "i18next": "^24.2.3",
+    "@mui/icons-material": "^9.0.0",
+    "@mui/material": "^9.0.0",
+    "i18next": "^26.0.8",
     "i18next-browser-languagedetector": "^8.2.1",
     "i18next-http-backend": "^4.0.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-i18next": "^15.7.4",
+    "react-i18next": "^17.0.6",
     "react-router": "^7.15.0"
   },
   "devDependencies": {
@@ -52,7 +52,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@total-typescript/tsconfig": "^1.0.4",
-    "@types/node": "^22.19.17",
+    "@types/node": "^24.12.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^4.7.0",
