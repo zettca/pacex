@@ -13,8 +13,10 @@ import { useSliderExpand } from "../hooks/useSliderExpand";
 import type { Mark, SliderConfig } from "../types";
 import { SplitButton } from "./SplitButton";
 
-export interface SliderPickerProps
-  extends Omit<SliderProps, "onChange" | "onChangeCommitted"> {
+export interface SliderPickerProps extends Omit<
+  SliderProps,
+  "onChange" | "onChangeCommitted"
+> {
   selected: boolean;
   buttons?: SliderConfig["buttons"];
   value: number;
