@@ -8,7 +8,7 @@ export interface SplitButtonProps {
   onChange: (value: number) => void;
 }
 
-export const SplitButton = ({ options = [], onChange }: SplitButtonProps) => {
+export const SplitButton = ({ options, onChange }: SplitButtonProps) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLButtonElement>(null);
 

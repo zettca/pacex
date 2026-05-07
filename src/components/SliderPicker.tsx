@@ -27,7 +27,7 @@ export interface SliderPickerProps extends Omit<
 
 const SliderPicker: React.FC<SliderPickerProps> = ({
   title,
-  selected = false,
+  selected,
   buttons = [],
   min,
   max,
@@ -86,12 +86,14 @@ const SliderPicker: React.FC<SliderPickerProps> = ({
           size="small"
           marks={visibleMarks}
           onChange={(evt, val) => {
-            sliderProps.onChange(val as number);
-            onChange?.(val as number);
+            if (Array.isArray(val)) return;
+            sliderProps.onChange(val);
+            onChange?.(val);
           }}
           onChangeCommitted={(evt, val) => {
+            if (Array.isArray(val)) return;
             sliderProps.onChangeCommitted();
-            onChangeCommitted?.(val as number);
+            onChangeCommitted?.(val);
           }}
           {...others}
         />
